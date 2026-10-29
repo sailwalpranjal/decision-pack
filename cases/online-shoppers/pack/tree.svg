@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 912 352" width="912" height="352" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<title id="t">Hypothesis tree</title>
+<desc id="d">Each box is a hypothesis marked supported, refuted or untested.</desc>
+<rect width="912" height="352" fill="#ffffff"/>
+<text x="20" y="28" font-size="17" font-weight="600" fill="#1f2933">Hypothesis tree</text>
+<text x="20" y="46" font-size="12" fill="#52606d">Green: supported. Grey: refuted. Dashed white: untested.</text>
+<path d="M270.0 218.5 C292.0 218.5 292.0 148.0 314.0 148.0" fill="none" stroke="#d9e2ec" stroke-width="2"/>
+<path d="M270.0 218.5 C292.0 218.5 292.0 289.0 314.0 289.0" fill="none" stroke="#d9e2ec" stroke-width="2"/>
+<path d="M564.0 148.0 C586.0 148.0 586.0 101.0 608.0 101.0" fill="none" stroke="#d9e2ec" stroke-width="2"/>
+<path d="M564.0 148.0 C586.0 148.0 586.0 195.0 608.0 195.0" fill="none" stroke="#d9e2ec" stroke-width="2"/>
+<rect x="20.0" y="179.5" width="250" height="78" rx="6" fill="#ffffff" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="30.0" y="196.5" font-size="10" font-weight="700" fill="#9ca3af">UNTESTED</text>
+<text x="30.0" y="212.5" font-size="11" fill="#1f2933">New visitors have a higher purchase rate</text>
+<text x="30.0" y="225.5" font-size="11" fill="#1f2933">than returning visitors.</text>
+<rect x="314.0" y="109.0" width="250" height="78" rx="6" fill="#d1fae5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="324.0" y="126.0" font-size="10" font-weight="700" fill="#0f766e">SUPPORTED</text>
+<text x="324.0" y="142.0" font-size="11" fill="#1f2933">The gap comes from sessions that reach a</text>
+<text x="324.0" y="155.0" font-size="11" fill="#1f2933">valued page and then buy.</text>
+<rect x="608.0" y="62.0" width="250" height="78" rx="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="1.5"/>
+<text x="618.0" y="79.0" font-size="10" font-weight="700" fill="#6b7280">REFUTED</text>
+<text x="618.0" y="95.0" font-size="11" fill="#1f2933">New visitors reach a valued page more</text>
+<text x="618.0" y="108.0" font-size="11" fill="#1f2933">often.</text>
+<rect x="608.0" y="156.0" width="250" height="78" rx="6" fill="#d1fae5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="618.0" y="173.0" font-size="10" font-weight="700" fill="#0f766e">SUPPORTED</text>
+<text x="618.0" y="189.0" font-size="11" fill="#1f2933">New visitors who reach a valued page are</text>
+<text x="618.0" y="202.0" font-size="11" fill="#1f2933">more likely to buy.</text>
+<rect x="314.0" y="250.0" width="250" height="78" rx="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="1.5"/>
+<text x="324.0" y="267.0" font-size="10" font-weight="700" fill="#6b7280">REFUTED</text>
+<text x="324.0" y="283.0" font-size="11" fill="#1f2933">The gap comes from purchases made</text>
+<text x="324.0" y="296.0" font-size="11" fill="#1f2933">without reaching a valued page.</text>
+</svg>

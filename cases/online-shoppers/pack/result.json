@@ -1,0 +1,1293 @@
+{
+  "title": "New visitors buy far more often than returning visitors, and the difference is in what happens after a valued page",
+  "observational": true,
+  "metric": {
+    "name": "purchase_rate",
+    "label": "Purchase rate",
+    "unit": "%",
+    "lower_is_better": false,
+    "baseline": 0.1393232868922377,
+    "comparison": 0.24911452184179456,
+    "gap": 0.10979123494955687,
+    "ratio": 1.7880321904440644,
+    "gap_ci": [
+      0.08939268753321278,
+      0.1314879325661371
+    ]
+  },
+  "groups": {
+    "baseline": "Returning visitors",
+    "comparison": "New visitors",
+    "n_baseline": 10551,
+    "n_comparison": 1694
+  },
+  "bridge": {
+    "factors": [
+      "pv_rate",
+      "buy_given_valued",
+      "buy_given_unvalued"
+    ],
+    "baseline_factors": {
+      "pv_rate": 0.2211164818500616,
+      "buy_given_valued": 0.5122160308615517,
+      "buy_given_unvalued": 0.033463129715259186
+    },
+    "comparison_factors": {
+      "pv_rate": 0.22491145218417946,
+      "buy_given_valued": 0.863517060367454,
+      "buy_given_unvalued": 0.07083015993907082
+    },
+    "shapley": {
+      "pv_rate": 0.0024125381642962906,
+      "buy_given_valued": 0.07834503620730979,
+      "buy_given_unvalued": 0.029033660577950773
+    },
+    "shapley_shares": {
+      "pv_rate": 0.021973868546106813,
+      "buy_given_valued": 0.713581883319785,
+      "buy_given_unvalued": 0.26444424813410805
+    },
+    "sequential": {
+      "pv_rate": 0.001816853057223039,
+      "buy_given_valued": 0.07901162469996978,
+      "buy_given_unvalued": 0.028962757192364047
+    },
+    "sequential_order": [
+      "pv_rate",
+      "buy_given_valued",
+      "buy_given_unvalued"
+    ],
+    "waterfall": [
+      {
+        "label": "Returning visitors",
+        "start": 0.0,
+        "end": 0.1393232868922377,
+        "delta": 0.1393232868922377
+      },
+      {
+        "label": "Reaching a valued page",
+        "start": 0.1393232868922377,
+        "end": 0.14173582505653398,
+        "delta": 0.0024125381642962906
+      },
+      {
+        "label": "Buying after a valued page",
+        "start": 0.14173582505653398,
+        "end": 0.22008086126384377,
+        "delta": 0.07834503620730979
+      },
+      {
+        "label": "Buying without one",
+        "start": 0.22008086126384377,
+        "end": 0.24911452184179456,
+        "delta": 0.029033660577950773
+      },
+      {
+        "label": "New visitors",
+        "start": 0.0,
+        "end": 0.24911452184179456,
+        "delta": 0.24911452184179456
+      }
+    ],
+    "order_sensitivity": {
+      "n_orders": 6,
+      "min_share": {
+        "pv_rate": 0.015256648555043393,
+        "buy_given_valued": 0.7075104652055227,
+        "buy_given_unvalued": 0.26379844625730703
+      },
+      "max_share": {
+        "pv_rate": 0.028691088537170235,
+        "buy_given_valued": 0.7196533014340475,
+        "buy_given_unvalued": 0.2650900500109091
+      }
+    }
+  },
+  "segments": {
+    "rate_baseline": 0.1393232868922377,
+    "rate_comparison": 0.24911452184179456,
+    "gap": 0.10979123494955687,
+    "alpha": 0.05,
+    "correction": "bh",
+    "family_size": 33,
+    "rows": [
+      {
+        "dimension": "Weekend",
+        "value": "False",
+        "num_a": 1077.0,
+        "den_a": 8169.0,
+        "num_b": 317.0,
+        "den_b": 1215.0,
+        "rate_a": 0.13183988248255601,
+        "rate_b": 0.2609053497942387,
+        "diff": 0.12906546731168267,
+        "ci_low": 0.10330687363481263,
+        "ci_high": 0.15482406098855273,
+        "weight_a": 0.7742394085868638,
+        "weight_b": 0.7172373081463991,
+        "rate_effect": 0.09624906971483638,
+        "mix_effect": -0.01119365158887775,
+        "contribution": 0.08505541812595863,
+        "z": 11.802441818918204,
+        "p_value": 3.791472095820048e-32,
+        "p_holm": 1.251185791620616e-30,
+        "p_bh": 1.251185791620616e-30,
+        "significant": true
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "2",
+        "num_a": 608.0,
+        "den_a": 2966.0,
+        "num_b": 238.0,
+        "den_b": 936.0,
+        "rate_a": 0.20498988536749832,
+        "rate_b": 0.25427350427350426,
+        "diff": 0.04928361890600594,
+        "ci_low": 0.01783064931186716,
+        "ci_high": 0.08073658850014472,
+        "weight_a": 0.2811107951852905,
+        "weight_b": 0.5525383707201889,
+        "rate_effect": 0.02054262389689768,
+        "mix_effect": 0.062328374191098344,
+        "contribution": 0.08287099808799603,
+        "z": 3.1901262039229166,
+        "p_value": 0.0014221067630212623,
+        "p_holm": 0.022753708208340197,
+        "p_bh": 0.0026071957322056478,
+        "significant": true
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "2",
+        "num_a": 897.0,
+        "den_a": 5649.0,
+        "num_b": 256.0,
+        "den_b": 936.0,
+        "rate_a": 0.15878916622411046,
+        "rate_b": 0.27350427350427353,
+        "diff": 0.11471510728016307,
+        "ci_low": 0.08460992032339977,
+        "ci_high": 0.14482029423692638,
+        "weight_a": 0.5353994882001706,
+        "weight_b": 0.5525383707201889,
+        "rate_effect": 0.06240145410009997,
+        "mix_effect": 0.0037045132388396863,
+        "contribution": 0.06610596733893966,
+        "z": 8.5531813970767,
+        "p_value": 1.19741495663219e-17,
+        "p_holm": 3.711986365559789e-16,
+        "p_bh": 1.317156452295409e-16,
+        "significant": true
+      },
+      {
+        "dimension": "Browser",
+        "value": "2",
+        "num_a": 988.0,
+        "den_a": 6902.0,
+        "num_b": 235.0,
+        "den_b": 1038.0,
+        "rate_a": 0.14314691393798898,
+        "rate_b": 0.22639691714836224,
+        "diff": 0.08325000321037326,
+        "ci_low": 0.05648370498899,
+        "ci_high": 0.11001630143175653,
+        "weight_a": 0.6541560041702208,
+        "weight_b": 0.6127508854781583,
+        "rate_effect": 0.05273500131523578,
+        "mix_effect": -0.007650503094024942,
+        "contribution": 0.045084498221210835,
+        "z": 6.927551478595654,
+        "p_value": 4.281867538980278e-12,
+        "p_holm": 1.2417415863042806e-10,
+        "p_bh": 2.8260325757269835e-11,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "1",
+        "num_a": 606.0,
+        "den_a": 4115.0,
+        "num_b": 165.0,
+        "den_b": 657.0,
+        "rate_a": 0.14726609963547996,
+        "rate_b": 0.2511415525114155,
+        "diff": 0.10387545287593555,
+        "ci_low": 0.06899182515283808,
+        "ci_high": 0.13875908059903302,
+        "weight_a": 0.3900104255520804,
+        "weight_b": 0.38783943329397874,
+        "rate_effect": 0.04039975317855847,
+        "mix_effect": -0.0004324699641896794,
+        "contribution": 0.03996728321436879,
+        "z": 6.717679619547704,
+        "p_value": 1.846410971305868e-11,
+        "p_holm": 4.985309622525843e-10,
+        "p_bh": 8.704508864727663e-11,
+        "significant": true
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "1",
+        "num_a": 273.0,
+        "den_a": 2166.0,
+        "num_b": 106.0,
+        "den_b": 412.0,
+        "rate_a": 0.1260387811634349,
+        "rate_b": 0.25728155339805825,
+        "diff": 0.13124277223462336,
+        "ci_low": 0.08677876433487783,
+        "ci_high": 0.17570678013436888,
+        "weight_a": 0.2052885982371339,
+        "weight_b": 0.24321133412042503,
+        "rate_effect": 0.029431187234823544,
+        "mix_effect": 0.0072682779031351475,
+        "contribution": 0.036699465137958694,
+        "z": 6.895447661551318,
+        "p_value": 5.369544064227766e-12,
+        "p_holm": 1.5034723379837744e-10,
+        "p_bh": 2.953249235325271e-11,
+        "significant": true
+      },
+      {
+        "dimension": "Browser",
+        "value": "1",
+        "num_a": 264.0,
+        "den_a": 2075.0,
+        "num_b": 101.0,
+        "den_b": 381.0,
+        "rate_a": 0.1272289156626506,
+        "rate_b": 0.2650918635170604,
+        "diff": 0.13786294785440978,
+        "ci_low": 0.09128140890146114,
+        "ci_high": 0.18444448680735842,
+        "weight_a": 0.19666382333428112,
+        "weight_b": 0.22491145218417946,
+        "rate_effect": 0.029059805112754983,
+        "mix_effect": 0.005541065880185701,
+        "contribution": 0.03460087099294069,
+        "z": 6.953602031474932,
+        "p_value": 3.5607520191740043e-12,
+        "p_holm": 1.0682256057522013e-10,
+        "p_bh": 2.8260325757269835e-11,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "Dec",
+        "num_a": 128.0,
+        "den_a": 1330.0,
+        "num_b": 75.0,
+        "den_b": 335.0,
+        "rate_a": 0.0962406015037594,
+        "rate_b": 0.22388059701492538,
+        "diff": 0.12763999551116598,
+        "ci_low": 0.08027215961960533,
+        "ci_high": 0.17500783140272663,
+        "weight_a": 0.1260544024263103,
+        "weight_b": 0.19775678866587956,
+        "rate_effect": 0.020665629488736213,
+        "mix_effect": 0.011476726909830282,
+        "contribution": 0.032142356398566496,
+        "z": 6.381465386016707,
+        "p_value": 1.754013715907976e-10,
+        "p_holm": 4.38503428976994e-09,
+        "p_bh": 6.431383624995912e-10,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "May",
+        "num_a": 277.0,
+        "den_a": 3045.0,
+        "num_b": 88.0,
+        "den_b": 319.0,
+        "rate_a": 0.0909688013136289,
+        "rate_b": 0.27586206896551724,
+        "diff": 0.18489326765188835,
+        "ci_low": 0.13479439169687155,
+        "ci_high": 0.23499214360690515,
+        "weight_a": 0.28859823713392097,
+        "weight_b": 0.18831168831168832,
+        "rate_effect": 0.04408871724562858,
+        "mix_effect": -0.01839410099087584,
+        "contribution": 0.02569461625475274,
+        "z": 10.101908171165677,
+        "p_value": 5.417758364614464e-24,
+        "p_holm": 1.7336826766766284e-22,
+        "p_bh": 8.939301301613865e-23,
+        "significant": true
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "8",
+        "num_a": 45.0,
+        "den_a": 167.0,
+        "num_b": 50.0,
+        "den_b": 175.0,
+        "rate_a": 0.2694610778443114,
+        "rate_b": 0.2857142857142857,
+        "diff": 0.016253207869974307,
+        "ci_low": -0.07865710621321081,
+        "ci_high": 0.11116352195315943,
+        "weight_a": 0.015827883612927685,
+        "weight_b": 0.10330578512396695,
+        "rate_effect": 0.0009681521411467039,
+        "mix_effect": 0.024282787887367187,
+        "contribution": 0.025250940028513892,
+        "z": 0.33544330121585547,
+        "p_value": 0.7372907084658523,
+        "p_holm": 1.0,
+        "p_bh": 0.7372907084658523,
+        "significant": false
+      },
+      {
+        "dimension": "Weekend",
+        "value": "True",
+        "num_a": 393.0,
+        "den_a": 2382.0,
+        "num_b": 105.0,
+        "den_b": 479.0,
+        "rate_a": 0.16498740554156172,
+        "rate_b": 0.21920668058455114,
+        "diff": 0.05421927504298943,
+        "ci_low": 0.014284362248291042,
+        "ci_high": 0.09415418783768781,
+        "weight_a": 0.2257605914131362,
+        "weight_b": 0.2827626918536009,
+        "rate_effect": 0.013785881880601623,
+        "mix_effect": 0.010949934942996618,
+        "contribution": 0.02473581682359824,
+        "z": 2.855648427898242,
+        "p_value": 0.00429490425395108,
+        "p_holm": 0.06012865955531512,
+        "p_bh": 0.006823623765886869,
+        "significant": true
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "5",
+        "num_a": 17.0,
+        "den_a": 110.0,
+        "num_b": 39.0,
+        "den_b": 149.0,
+        "rate_a": 0.15454545454545454,
+        "rate_b": 0.26174496644295303,
+        "diff": 0.10719951189749849,
+        "ci_low": 0.009501552994400808,
+        "ci_high": 0.20489747080059617,
+        "weight_a": 0.010425552080371528,
+        "weight_b": 0.08795749704840614,
+        "rate_effect": 0.00527330742279629,
+        "mix_effect": 0.016137903005396588,
+        "contribution": 0.021411210428192877,
+        "z": 2.071524787187286,
+        "p_value": 0.038309780507952265,
+        "p_holm": 0.3064782440636181,
+        "p_bh": 0.04862395218317018,
+        "significant": true
+      },
+      {
+        "dimension": "Browser",
+        "value": "4",
+        "num_a": 81.0,
+        "den_a": 605.0,
+        "num_b": 48.0,
+        "den_b": 128.0,
+        "rate_a": 0.13388429752066117,
+        "rate_b": 0.375,
+        "diff": 0.24111570247933883,
+        "ci_low": 0.15296692553167304,
+        "ci_high": 0.32926447942700465,
+        "weight_a": 0.057340536442043406,
+        "weight_b": 0.0755608028335301,
+        "rate_effect": 0.016022299889937426,
+        "mix_effect": 0.004636003731635509,
+        "contribution": 0.020658303621572935,
+        "z": 6.507989287771823,
+        "p_value": 7.616334789406305e-11,
+        "p_holm": 1.980247045245639e-09,
+        "p_bh": 3.141738100630101e-10,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "Nov",
+        "num_a": 629.0,
+        "den_a": 2557.0,
+        "num_b": 128.0,
+        "den_b": 419.0,
+        "rate_a": 0.24599139616738366,
+        "rate_b": 0.3054892601431981,
+        "diff": 0.05949786397581444,
+        "ci_low": 0.012340473410873576,
+        "ci_high": 0.1066552545407553,
+        "weight_a": 0.24234669699554545,
+        "weight_b": 0.2473435655253837,
+        "rate_effect": 0.014567762314875554,
+        "mix_effect": 0.0013778381681664434,
+        "contribution": 0.015945600483041996,
+        "z": 2.5921708502265703,
+        "p_value": 0.009537239503078833,
+        "p_holm": 0.10490963453386716,
+        "p_bh": 0.013683865373982673,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "9",
+        "num_a": 44.0,
+        "den_a": 364.0,
+        "num_b": 27.0,
+        "den_b": 92.0,
+        "rate_a": 0.12087912087912088,
+        "rate_b": 0.29347826086956524,
+        "diff": 0.17259913999044435,
+        "ci_low": 0.07370862766398507,
+        "ci_high": 0.27148965231690364,
+        "weight_a": 0.03449909961141124,
+        "weight_b": 0.05430932703659976,
+        "rate_effect": 0.00766412903167558,
+        "mix_effect": 0.0041042569838735665,
+        "contribution": 0.011768386015549148,
+        "z": 4.079492275594237,
+        "p_value": 4.513416946531164e-05,
+        "p_holm": 0.0009026833893062328,
+        "p_bh": 0.00010638768516823458,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "6",
+        "num_a": 80.0,
+        "den_a": 683.0,
+        "num_b": 32.0,
+        "den_b": 121.0,
+        "rate_a": 0.1171303074670571,
+        "rate_b": 0.2644628099173554,
+        "diff": 0.14733250245029827,
+        "ci_low": 0.06513009681613192,
+        "ci_high": 0.22953490808446464,
+        "weight_a": 0.06473320064448868,
+        "weight_b": 0.07142857142857142,
+        "rate_effect": 0.01003052730879554,
+        "mix_effect": 0.0012774537047713272,
+        "contribution": 0.011307981013566868,
+        "z": 4.313875114457761,
+        "p_value": 1.604175876958326e-05,
+        "p_holm": 0.00035291869293083177,
+        "p_bh": 4.4114836616353965e-05,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "2",
+        "num_a": 145.0,
+        "den_a": 982.0,
+        "num_b": 42.0,
+        "den_b": 149.0,
+        "rate_a": 0.14765784114052954,
+        "rate_b": 0.28187919463087246,
+        "diff": 0.13422135349034292,
+        "ci_low": 0.058649359871945694,
+        "ci_high": 0.20979334710874015,
+        "weight_a": 0.09307174675386219,
+        "weight_b": 0.08795749704840614,
+        "rate_effect": 0.012148995062236862,
+        "mix_effect": -0.00109837982933818,
+        "contribution": 0.011050615232898683,
+        "z": 4.109556863203238,
+        "p_value": 3.964190944556272e-05,
+        "p_holm": 0.0008324800983568171,
+        "p_bh": 0.00010062946243873612,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "Sep",
+        "num_a": 58.0,
+        "den_a": 340.0,
+        "num_b": 28.0,
+        "den_b": 108.0,
+        "rate_a": 0.17058823529411765,
+        "rate_b": 0.25925925925925924,
+        "diff": 0.0886710239651416,
+        "ci_low": -0.00314079116923624,
+        "ci_high": 0.18048283909951943,
+        "weight_a": 0.03222443370296654,
+        "weight_b": 0.06375442739079103,
+        "rate_effect": 0.0042552719460957865,
+        "mix_effect": 0.006776544394997572,
+        "contribution": 0.011031816341093358,
+        "z": 2.0383021194570823,
+        "p_value": 0.041519728058872496,
+        "p_holm": 0.3064782440636181,
+        "p_bh": 0.05074633429417749,
+        "significant": false
+      },
+      {
+        "dimension": "Region",
+        "value": "5",
+        "num_a": 30.0,
+        "den_a": 268.0,
+        "num_b": 22.0,
+        "den_b": 50.0,
+        "rate_a": 0.11194029850746269,
+        "rate_b": 0.44,
+        "diff": 0.3280597014925373,
+        "ci_low": 0.18538655221518036,
+        "ci_high": 0.4707328507698943,
+        "weight_a": 0.025400435977632453,
+        "weight_b": 0.0295159386068477,
+        "rate_effect": 0.00900792472661846,
+        "mix_effect": 0.0011357558748386553,
+        "contribution": 0.010143680601457115,
+        "z": 5.758062233218062,
+        "p_value": 8.508498911553701e-09,
+        "p_holm": 2.042039738772888e-07,
+        "p_bh": 2.807804640812721e-08,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "3",
+        "num_a": 287.0,
+        "den_a": 2083.0,
+        "num_b": 62.0,
+        "den_b": 312.0,
+        "rate_a": 0.13778204512722037,
+        "rate_b": 0.1987179487179487,
+        "diff": 0.06093590359072834,
+        "ci_low": 0.014249989343141707,
+        "ci_high": 0.10762181783831498,
+        "weight_a": 0.19742204530376267,
+        "weight_b": 0.18417945690672963,
+        "rate_effect": 0.011626616174387832,
+        "mix_effect": -0.002228065457047863,
+        "contribution": 0.009398550717339969,
+        "z": 2.8450009657915354,
+        "p_value": 0.004441128840568566,
+        "p_holm": 0.06012865955531512,
+        "p_bh": 0.006823623765886869,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "Oct",
+        "num_a": 87.0,
+        "den_a": 425.0,
+        "num_b": 28.0,
+        "den_b": 124.0,
+        "rate_a": 0.20470588235294118,
+        "rate_b": 0.22580645161290322,
+        "diff": 0.021100569259962038,
+        "ci_low": -0.06188912549590932,
+        "ci_high": 0.10409026401583339,
+        "weight_a": 0.04028054212870818,
+        "weight_b": 0.07319952774498228,
+        "rate_effect": 0.0011972470369975687,
+        "mix_effect": 0.007086014664725113,
+        "contribution": 0.008283261701722682,
+        "z": 0.5080329339314925,
+        "p_value": 0.6114302469285242,
+        "p_holm": 1.0,
+        "p_bh": 0.6305374421450406,
+        "significant": false
+      },
+      {
+        "dimension": "Region",
+        "value": "4",
+        "num_a": 139.0,
+        "den_a": 1038.0,
+        "num_b": 36.0,
+        "den_b": 139.0,
+        "rate_a": 0.13391136801541426,
+        "rate_b": 0.2589928057553957,
+        "diff": 0.12508143773998143,
+        "ci_low": 0.04936438536477354,
+        "ci_high": 0.2007984901151893,
+        "weight_a": 0.09837930054023315,
+        "weight_b": 0.0820543093270366,
+        "rate_effect": 0.0112844476694065,
+        "mix_effect": -0.0032070785922183624,
+        "contribution": 0.008077369077188139,
+        "z": 3.892550788320617,
+        "p_value": 9.919572456215934e-05,
+        "p_holm": 0.001785523042118868,
+        "p_bh": 0.00020459118190945363,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "Aug",
+        "num_a": 55.0,
+        "den_a": 361.0,
+        "num_b": 21.0,
+        "den_b": 72.0,
+        "rate_a": 0.1523545706371191,
+        "rate_b": 0.2916666666666667,
+        "diff": 0.13931209602954758,
+        "ci_low": 0.027970584685932345,
+        "ci_high": 0.25065360737316283,
+        "weight_a": 0.03421476637285566,
+        "weight_b": 0.04250295159386069,
+        "rate_effect": 0.005343853046273467,
+        "mix_effect": 0.0018400651284168025,
+        "contribution": 0.007183918174690269,
+        "z": 2.8373422145644662,
+        "p_value": 0.004549082510591246,
+        "p_holm": 0.06012865955531512,
+        "p_bh": 0.006823623765886869,
+        "significant": true
+      },
+      {
+        "dimension": "Browser",
+        "value": "5",
+        "num_a": 63.0,
+        "den_a": 403.0,
+        "num_b": 22.0,
+        "den_b": 62.0,
+        "rate_a": 0.15632754342431762,
+        "rate_b": 0.3548387096774194,
+        "diff": 0.19851116625310175,
+        "ci_low": 0.07424792075851422,
+        "ci_high": 0.3227744117476893,
+        "weight_a": 0.03819543171263387,
+        "weight_b": 0.03659976387249114,
+        "rate_effect": 0.007423840752866007,
+        "mix_effect": -0.00040782577552034993,
+        "contribution": 0.007016014977345657,
+        "z": 3.7649440267617167,
+        "p_value": 0.00016658639480421746,
+        "p_holm": 0.0028319687116716966,
+        "p_bh": 0.0003233735899140692,
+        "significant": true
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "4",
+        "num_a": 132.0,
+        "den_a": 970.0,
+        "num_b": 33.0,
+        "den_b": 99.0,
+        "rate_a": 0.1360824742268041,
+        "rate_b": 0.3333333333333333,
+        "diff": 0.1972508591065292,
+        "ci_low": 0.10191782110590578,
+        "ci_high": 0.2925838971071526,
+        "weight_a": 0.09193441379963985,
+        "weight_b": 0.05844155844155844,
+        "rate_effect": 0.014830894856777974,
+        "mix_effect": -0.00786103787270433,
+        "contribution": 0.006969856984073644,
+        "z": 5.174698286551681,
+        "p_value": 2.282795636895798e-07,
+        "p_holm": 5.250429964860335e-06,
+        "p_bh": 6.848386910687394e-07,
+        "significant": true
+      },
+      {
+        "dimension": "Month",
+        "value": "Mar",
+        "num_a": 156.0,
+        "den_a": 1675.0,
+        "num_b": 36.0,
+        "den_b": 232.0,
+        "rate_a": 0.09313432835820895,
+        "rate_b": 0.15517241379310345,
+        "diff": 0.0620380854348945,
+        "ci_low": 0.013413431302609212,
+        "ci_high": 0.11066273956717979,
+        "weight_a": 0.15875272486020284,
+        "weight_b": 0.13695395513577333,
+        "rate_effect": 0.009172538138629689,
+        "mix_effect": -0.002706390746589877,
+        "contribution": 0.006466147392039811,
+        "z": 2.943082624045898,
+        "p_value": 0.003249616766694656,
+        "p_holm": 0.04874425150041984,
+        "p_bh": 0.0056440712263644026,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "7",
+        "num_a": 96.0,
+        "den_a": 659.0,
+        "num_b": 23.0,
+        "den_b": 100.0,
+        "rate_a": 0.1456752655538695,
+        "rate_b": 0.23,
+        "diff": 0.0843247344461305,
+        "ci_low": -0.002443311239702539,
+        "ci_high": 0.17109278013196355,
+        "weight_a": 0.06245853473604398,
+        "weight_b": 0.0590318772136954,
+        "rate_effect": 0.005122323362706386,
+        "mix_effect": -0.0006436552373352339,
+        "contribution": 0.004478668125371153,
+        "z": 2.1610017060562883,
+        "p_value": 0.030695207628208394,
+        "p_holm": 0.27625686865387555,
+        "p_bh": 0.04051767406923508,
+        "significant": true
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "4",
+        "num_a": 67.0,
+        "den_a": 415.0,
+        "num_b": 18.0,
+        "den_b": 63.0,
+        "rate_a": 0.1614457831325301,
+        "rate_b": 0.2857142857142857,
+        "diff": 0.12426850258175559,
+        "ci_low": 0.0072336982712071785,
+        "ci_high": 0.241303306892304,
+        "weight_a": 0.03933276466685622,
+        "weight_b": 0.0371900826446281,
+        "rate_effect": 0.004754689824345239,
+        "mix_effect": -0.0004790609202881808,
+        "contribution": 0.0042756289040570584,
+        "z": 2.4036077659150434,
+        "p_value": 0.01623418130450649,
+        "p_holm": 0.1623418130450649,
+        "p_bh": 0.022321999293696423,
+        "significant": true
+      },
+      {
+        "dimension": "Region",
+        "value": "8",
+        "num_a": 43.0,
+        "den_a": 359.0,
+        "num_b": 13.0,
+        "den_b": 74.0,
+        "rate_a": 0.11977715877437325,
+        "rate_b": 0.17567567567567569,
+        "diff": 0.05589851690130243,
+        "ci_low": -0.03708356391660127,
+        "ci_high": 0.14888059771920614,
+        "weight_a": 0.03402521088048526,
+        "weight_b": 0.043683589138134596,
+        "rate_effect": 0.002171903335610376,
+        "mix_effect": 0.0014267976162066105,
+        "contribution": 0.0035987009518169866,
+        "z": 1.304796037296546,
+        "p_value": 0.19196230885298904,
+        "p_holm": 0.7678492354119562,
+        "p_bh": 0.21115853973828794,
+        "significant": false
+      },
+      {
+        "dimension": "Month",
+        "value": "Jul",
+        "num_a": 55.0,
+        "den_a": 378.0,
+        "num_b": 11.0,
+        "den_b": 54.0,
+        "rate_a": 0.1455026455026455,
+        "rate_b": 0.2037037037037037,
+        "diff": 0.0582010582010582,
+        "ci_low": -0.054948136992554214,
+        "ci_high": 0.1713502533946706,
+        "weight_a": 0.03582598805800398,
+        "weight_b": 0.031877213695395513,
+        "rate_effect": 0.001970198992823795,
+        "mix_effect": -0.0006894685395030655,
+        "contribution": 0.0012807304533207294,
+        "z": 1.1119954846335633,
+        "p_value": 0.2661400917700668,
+        "p_holm": 0.7984202753102004,
+        "p_bh": 0.28331042027136144,
+        "significant": false
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "3",
+        "num_a": 230.0,
+        "den_a": 2275.0,
+        "num_b": 38.0,
+        "den_b": 272.0,
+        "rate_a": 0.1010989010989011,
+        "rate_b": 0.13970588235294118,
+        "diff": 0.03860698125404008,
+        "ci_low": -0.004414765277657551,
+        "ci_high": 0.08162872778573771,
+        "weight_a": 0.21561937257132024,
+        "weight_b": 0.16056670602125148,
+        "rate_effect": 0.007261704442127132,
+        "mix_effect": -0.006628472723517896,
+        "contribution": 0.0006332317186092361,
+        "z": 1.9611730205373918,
+        "p_value": 0.04985884296152996,
+        "p_holm": 0.3064782440636181,
+        "p_bh": 0.05876220777608888,
+        "significant": false
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "11",
+        "num_a": 41.0,
+        "den_a": 195.0,
+        "num_b": 6.0,
+        "den_b": 51.0,
+        "rate_a": 0.21025641025641026,
+        "rate_b": 0.11764705882352941,
+        "diff": -0.09260935143288085,
+        "ci_low": -0.19791885272271684,
+        "ci_high": 0.01270014985695514,
+        "weight_a": 0.018481660506113166,
+        "weight_b": 0.03010625737898465,
+        "rate_effect": -0.0022498477814064904,
+        "mix_effect": 0.001905872820635189,
+        "contribution": -0.0003439749607713014,
+        "z": -1.4977844686839368,
+        "p_value": 0.13418925732369125,
+        "p_holm": 0.6709462866184562,
+        "p_bh": 0.15269812040282107,
+        "significant": false
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "3",
+        "num_a": 154.0,
+        "den_a": 1905.0,
+        "num_b": 25.0,
+        "den_b": 140.0,
+        "rate_a": 0.08083989501312336,
+        "rate_b": 0.17857142857142858,
+        "diff": 0.09773153355830522,
+        "ci_low": 0.03311970221571976,
+        "ci_high": 0.16234336490089069,
+        "weight_a": 0.18055160648279783,
+        "weight_b": 0.08264462809917356,
+        "rate_effect": 0.012861285816233754,
+        "mix_effect": -0.012699089425330044,
+        "contribution": 0.0001621963909037103,
+        "z": 3.9492128585230315,
+        "p_value": 7.840860491648343e-05,
+        "p_holm": 0.0014897634934131852,
+        "p_bh": 0.00017249893081626355,
+        "significant": true
+      }
+    ],
+    "excluded": [
+      {
+        "dimension": "Month",
+        "value": "Feb",
+        "reason": "below the minimum denominator of 50 (A=183, B=1)"
+      },
+      {
+        "dimension": "Month",
+        "value": "June",
+        "reason": "below the minimum denominator of 50 (A=257, B=30)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "1",
+        "reason": "below the minimum denominator of 50 (A=2407, B=37)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "10",
+        "reason": "below the minimum denominator of 50 (A=425, B=22)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "12",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "13",
+        "reason": "below the minimum denominator of 50 (A=731, B=6)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "14",
+        "reason": "below the minimum denominator of 50 (A=12, B=1)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "15",
+        "reason": "below the minimum denominator of 50 (A=36, B=2)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "16",
+        "reason": "below the minimum denominator of 50 (A=2, B=1)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "17",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "18",
+        "reason": "below the minimum denominator of 50 (A=9, B=1)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "19",
+        "reason": "below the minimum denominator of 50 (A=16, B=1)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "20",
+        "reason": "below the minimum denominator of 50 (A=129, B=17)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "6",
+        "reason": "below the minimum denominator of 50 (A=401, B=42)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "7",
+        "reason": "below the minimum denominator of 50 (A=35, B=5)"
+      },
+      {
+        "dimension": "TrafficType",
+        "value": "9",
+        "reason": "below the minimum denominator of 50 (A=33, B=9)"
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "5",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "6",
+        "reason": "below the minimum denominator of 50 (A=17, B=2)"
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "7",
+        "reason": "below the minimum denominator of 50 (A=6, B=1)"
+      },
+      {
+        "dimension": "OperatingSystems",
+        "value": "8",
+        "reason": "below the minimum denominator of 50 (A=17, B=8)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "10",
+        "reason": "below the minimum denominator of 50 (A=141, B=21)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "11",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Browser",
+        "value": "12",
+        "reason": "below the minimum denominator of 50 (A=9, B=1)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "13",
+        "reason": "below the minimum denominator of 50 (A=8, B=1)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "3",
+        "reason": "below the minimum denominator of 50 (A=84, B=21)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "6",
+        "reason": "below the minimum denominator of 50 (A=163, B=11)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "7",
+        "reason": "below the minimum denominator of 50 (A=41, B=8)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "8",
+        "reason": "below the minimum denominator of 50 (A=113, B=22)"
+      },
+      {
+        "dimension": "Browser",
+        "value": "9",
+        "reason": "present in only one group"
+      }
+    ],
+    "simpson": [
+      {
+        "stratifier": "Month",
+        "overall_diff": 0.10979123494955687,
+        "stratum_diffs": {
+          "Aug": 0.13931209602954758,
+          "Dec": 0.12763999551116598,
+          "Jul": 0.0582010582010582,
+          "Mar": 0.0620380854348945,
+          "May": 0.18489326765188835,
+          "Nov": 0.05949786397581444,
+          "Oct": 0.021100569259962038,
+          "Sep": 0.0886710239651416
+        },
+        "stratum_weights_a": {
+          "Aug": 0.03421476637285566,
+          "Dec": 0.1260544024263103,
+          "Jul": 0.03582598805800398,
+          "Mar": 0.15875272486020284,
+          "May": 0.28859823713392097,
+          "Nov": 0.24234669699554545,
+          "Oct": 0.04028054212870818,
+          "Sep": 0.03222443370296654
+        },
+        "stratum_weights_b": {
+          "Aug": 0.04250295159386069,
+          "Dec": 0.19775678866587956,
+          "Jul": 0.031877213695395513,
+          "Mar": 0.13695395513577333,
+          "May": 0.18831168831168832,
+          "Nov": 0.2473435655253837,
+          "Oct": 0.07319952774498228,
+          "Sep": 0.06375442739079103
+        },
+        "reversed": false,
+        "message": "No reversal across 'Month' (8 levels compared)."
+      },
+      {
+        "stratifier": "Weekend",
+        "overall_diff": 0.10979123494955687,
+        "stratum_diffs": {
+          "False": 0.12906546731168267,
+          "True": 0.05421927504298943
+        },
+        "stratum_weights_a": {
+          "False": 0.7742394085868638,
+          "True": 0.2257605914131362
+        },
+        "stratum_weights_b": {
+          "False": 0.7172373081463991,
+          "True": 0.2827626918536009
+        },
+        "reversed": false,
+        "message": "No reversal across 'Weekend' (2 levels compared)."
+      }
+    ]
+  },
+  "tree": {
+    "results": [
+      {
+        "node_id": "gap",
+        "statement": "New visitors have a higher purchase rate than returning visitors.",
+        "status": "untested",
+        "detail": "no test is attached to this node",
+        "statistic": null
+      },
+      {
+        "node_id": "via_valued",
+        "statement": "The gap comes from sessions that reach a valued page and then buy.",
+        "status": "supported",
+        "detail": "73.7% of the gap (threshold 50%; Shapley split)",
+        "statistic": 0.7373582178845481
+      },
+      {
+        "node_id": "reach",
+        "statement": "New visitors reach a valued page more often.",
+        "status": "refuted",
+        "detail": "no difference as large as 20% (rate 22.11% -> 22.49%, p = 0.727); power to detect it was 85%",
+        "statistic": 0.003794970334117853
+      },
+      {
+        "node_id": "convert",
+        "statement": "New visitors who reach a valued page are more likely to buy.",
+        "status": "supported",
+        "detail": "rate 51.22% -> 86.35% (diff +35.13%, p = 1.39e-37); the gap is in the claimed direction (higher)",
+        "statistic": 0.35130102950590236
+      },
+      {
+        "node_id": "via_other",
+        "statement": "The gap comes from purchases made without reaching a valued page.",
+        "status": "refuted",
+        "detail": "26.3% of the gap (threshold 50%; Shapley split)",
+        "statistic": 0.26264178211545186
+      }
+    ],
+    "mece_problems": []
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "id": "R1",
+      "title": "Find out why returning visitors who reach a valued page convert far less often than new visitors",
+      "rationale": "Both groups reach a valued page at about the same rate (22%), but 86% of new visitors buy after one and 51% of returning visitors do. That is where the gap sits.",
+      "impact_unit": "extra purchases over the same period",
+      "low": 46.63542,
+      "base": 139.90626,
+      "high": 279.81252,
+      "score": 5.666666666666667,
+      "arithmetic": "ICE = (8 + 4 + 5) / 3 = 5.67",
+      "assumptions": [
+        {
+          "name": "sessions",
+          "low": 10551.0,
+          "base": 10551.0,
+          "high": 10551.0,
+          "source": "Returning-visitor sessions with a purchase label in the dataset"
+        },
+        {
+          "name": "pv_rate",
+          "low": 0.221,
+          "base": 0.221,
+          "high": 0.221,
+          "source": "Share of returning sessions that reached a valued page, from the data"
+        },
+        {
+          "name": "lift",
+          "low": 0.02,
+          "base": 0.06,
+          "high": 0.12,
+          "source": "My judgement, no test has been run; absolute rise in purchase rate among returning sessions that reach a valued page"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "lift",
+          "at_low": 46.63542,
+          "at_high": 279.81252,
+          "swing": 233.1771
+        },
+        {
+          "name": "sessions",
+          "at_low": 139.90626,
+          "at_high": 139.90626,
+          "swing": 0.0
+        },
+        {
+          "name": "pv_rate",
+          "at_low": 139.90626,
+          "at_high": 139.90626,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "rank": 2,
+      "id": "R2",
+      "title": "Test a resume-checkout prompt for returning visitors on valued pages",
+      "rationale": "A concrete intervention for recommendation 1. Whether the shortfall is a checkout problem is a hypothesis, not something this data shows.",
+      "impact_unit": "extra purchases over the same period",
+      "low": 0.0,
+      "base": 69.95313,
+      "high": 186.54168,
+      "score": 5.333333333333333,
+      "arithmetic": "ICE = (6 + 3 + 7) / 3 = 5.33",
+      "assumptions": [
+        {
+          "name": "sessions",
+          "low": 10551.0,
+          "base": 10551.0,
+          "high": 10551.0,
+          "source": "Returning-visitor sessions in the dataset"
+        },
+        {
+          "name": "pv_rate",
+          "low": 0.221,
+          "base": 0.221,
+          "high": 0.221,
+          "source": "Share of returning sessions that reached a valued page, from the data"
+        },
+        {
+          "name": "lift",
+          "low": 0.0,
+          "base": 0.03,
+          "high": 0.08,
+          "source": "My judgement; absolute rise in purchase rate among those sessions"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "lift",
+          "at_low": 0.0,
+          "at_high": 186.54168,
+          "swing": 186.54168
+        },
+        {
+          "name": "sessions",
+          "at_low": 69.95313,
+          "at_high": 69.95313,
+          "swing": 0.0
+        },
+        {
+          "name": "pv_rate",
+          "at_low": 69.95313,
+          "at_high": 69.95313,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "rank": 3,
+      "id": "R3",
+      "title": "Repeat this comparison by traffic source, then act on the sources that differ",
+      "rationale": "Traffic type is the dimension most likely to confound new versus returning, and the scan shows how much each source differs.",
+      "impact_unit": "extra purchases over the same period, if the follow-up finds something to act on",
+      "low": 0.0,
+      "base": 63.306,
+      "high": 263.77500000000003,
+      "score": 5.333333333333333,
+      "arithmetic": "ICE = (4 + 4 + 8) / 3 = 5.33",
+      "assumptions": [
+        {
+          "name": "sessions",
+          "low": 10551.0,
+          "base": 10551.0,
+          "high": 10551.0,
+          "source": "Returning-visitor sessions in the dataset"
+        },
+        {
+          "name": "share",
+          "low": 0.1,
+          "base": 0.3,
+          "high": 0.5,
+          "source": "My judgement; share of returning sessions that come from the sources that turn out to matter"
+        },
+        {
+          "name": "lift",
+          "low": 0.0,
+          "base": 0.02,
+          "high": 0.05,
+          "source": "My judgement; purchase-rate rise from acting on what the analysis finds"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "lift",
+          "at_low": 0.0,
+          "at_high": 158.265,
+          "swing": 158.265
+        },
+        {
+          "name": "share",
+          "at_low": 21.102000000000004,
+          "at_high": 105.51,
+          "swing": 84.408
+        },
+        {
+          "name": "sessions",
+          "at_low": 63.306,
+          "at_high": 63.306,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "warnings": [
+    "Observational data: the groups were not randomly assigned, so gaps describe differences, not causes.",
+    "The segment scan compared 33 segments; p-values are adjusted for that (BH).",
+    "29 segment(s) were set aside; see the scan table."
+  ]
+}

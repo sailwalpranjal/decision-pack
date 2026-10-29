@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" width="860" height="460" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<title id="t">Purchase rate: Returning visitors to New visitors</title>
+<desc id="d">Waterfall of the gap split by factor (Shapley). Returning visitors 13.9%; Reaching a valued page +0.2 pp; Buying after a valued page +7.8 pp; Buying without one +2.9 pp; New visitors 24.9%</desc>
+<rect width="860" height="460" fill="#ffffff"/>
+<text x="70" y="28" font-size="17" font-weight="600" fill="#1f2933">Purchase rate: Returning visitors to New visitors</text>
+<text x="70" y="46" font-size="12" fill="#52606d">Each step is a factor's Shapley contribution; steps sum to the gap.</text>
+<line x1="70" x2="840" y1="310.0" y2="310.0" stroke="#d9e2ec"/>
+<text x="62" y="314.0" font-size="11" text-anchor="end" fill="#52606d">0.0%</text>
+<line x1="70" x2="840" y1="247.5" y2="247.5" stroke="#d9e2ec"/>
+<text x="62" y="251.5" font-size="11" text-anchor="end" fill="#52606d">6.7%</text>
+<line x1="70" x2="840" y1="185.0" y2="185.0" stroke="#d9e2ec"/>
+<text x="62" y="189.0" font-size="11" text-anchor="end" fill="#52606d">13.5%</text>
+<line x1="70" x2="840" y1="122.5" y2="122.5" stroke="#d9e2ec"/>
+<text x="62" y="126.5" font-size="11" text-anchor="end" fill="#52606d">20.2%</text>
+<line x1="70" x2="840" y1="60.0" y2="60.0" stroke="#d9e2ec"/>
+<text x="62" y="64.0" font-size="11" text-anchor="end" fill="#52606d">26.9%</text>
+<rect x="99.3" y="180.5" width="95.5" height="129.5" fill="#486581"/>
+<text x="147.0" y="174.5" font-size="12" font-weight="600" text-anchor="middle" fill="#1f2933">13.9%</text>
+<text x="147.0" y="328.0" font-size="11" text-anchor="middle" fill="#1f2933">Returning visitors</text>
+<rect x="253.3" y="178.3" width="95.5" height="2.2" fill="#0f766e"/>
+<line x1="194.7" x2="253.3" y1="180.5" y2="180.5" stroke="#52606d" stroke-dasharray="3 3"/>
+<text x="301.0" y="172.3" font-size="12" font-weight="600" text-anchor="middle" fill="#1f2933">+0.2 pp</text>
+<text x="301.0" y="328.0" font-size="11" text-anchor="middle" fill="#1f2933">Reaching a valued</text>
+<text x="301.0" y="342.0" font-size="11" text-anchor="middle" fill="#1f2933">page</text>
+<rect x="407.3" y="105.5" width="95.5" height="72.8" fill="#0f766e"/>
+<line x1="348.7" x2="407.3" y1="178.3" y2="178.3" stroke="#52606d" stroke-dasharray="3 3"/>
+<text x="455.0" y="99.5" font-size="12" font-weight="600" text-anchor="middle" fill="#1f2933">+7.8 pp</text>
+<text x="455.0" y="328.0" font-size="11" text-anchor="middle" fill="#1f2933">Buying after a</text>
+<text x="455.0" y="342.0" font-size="11" text-anchor="middle" fill="#1f2933">valued page</text>
+<rect x="561.3" y="78.5" width="95.5" height="27.0" fill="#0f766e"/>
+<line x1="502.7" x2="561.3" y1="105.5" y2="105.5" stroke="#52606d" stroke-dasharray="3 3"/>
+<text x="609.0" y="72.5" font-size="12" font-weight="600" text-anchor="middle" fill="#1f2933">+2.9 pp</text>
+<text x="609.0" y="328.0" font-size="11" text-anchor="middle" fill="#1f2933">Buying without one</text>
+<rect x="715.3" y="78.5" width="95.5" height="231.5" fill="#486581"/>
+<text x="763.0" y="72.5" font-size="12" font-weight="600" text-anchor="middle" fill="#1f2933">24.9%</text>
+<text x="763.0" y="328.0" font-size="11" text-anchor="middle" fill="#1f2933">New visitors</text>
+<text x="70" y="448" font-size="11" fill="#52606d"><tspan fill="#c2410c">Orange</tspan> pushes the metric the wrong way, <tspan fill="#0f766e">teal</tspan> the right way.</text>
+</svg>

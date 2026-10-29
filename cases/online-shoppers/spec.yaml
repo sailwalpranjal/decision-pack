@@ -48,7 +48,7 @@ segments:
 tree_file: tree.yaml
 data_notes:
   - "UCI Machine Learning Repository, Online Shoppers Purchasing Intention Dataset (CC BY 4.0). One row is one browsing session; 12,330 sessions have a purchase label."
-  - "PageValues is the average value of the pages a session visited before a transaction. A positive value means the session reached a page that has led to purchases; it is not revenue."
+  - "PageValues is the average value of the pages a session visited before a transaction. A positive value means the session reached a page that has led to purchases; it is not revenue. It is computed from transaction outcomes, so a session that ends in a purchase is much more likely to have a positive value (81% of purchasing sessions do). The split between 'reaching a valued page' and 'buying after one' therefore partly reflects how the variable is built, and should be read as a description, not a funnel."
   - "Returning and new visitors differ in many ways besides how they behave on the site. This is an observational comparison."
 recommendations:
   - id: R1

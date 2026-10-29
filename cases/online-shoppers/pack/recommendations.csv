@@ -1,0 +1,4 @@
+rank,id,title,unit,low,base,high,score,arithmetic
+1,R1,Find out why returning visitors who reach a valued page convert far less often than new visitors,extra purchases over the same period,46.64,139.91,279.81,5.67,ICE = (8 + 4 + 5) / 3 = 5.67
+2,R2,Test a resume-checkout prompt for returning visitors on valued pages,extra purchases over the same period,0.00,69.95,186.54,5.33,ICE = (6 + 3 + 7) / 3 = 5.33
+3,R3,"Repeat this comparison by traffic source, then act on the sources that differ","extra purchases over the same period, if the follow-up finds something to act on",0.00,63.31,263.78,5.33,ICE = (4 + 4 + 8) / 3 = 5.33
