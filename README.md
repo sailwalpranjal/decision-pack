@@ -20,7 +20,7 @@ It is decision support for analysts, not an oracle. I have not interviewed any u
 
 ## Demo
 
-The generated output for the three cases is committed, so you can read it without running anything:
+The output for the three cases is committed, so you can read it without running anything:
 
 | Case | Memo | Deck | Waterfall |
 |---|---|---|---|

@@ -1,6 +1,6 @@
 # Case: funnel lab (ad campaigns)
 
-Observational comparison of two ad campaigns from a public dataset. See [case-study.md](case-study.md) for the story and [pack/](pack/) for the generated output.
+Observational comparison of two ad campaigns from a public dataset. See [case-study.md](case-study.md) for the story and [pack/](pack/) for the output.
 
 | | |
 |---|---|
@@ -10,7 +10,7 @@ Observational comparison of two ad campaigns from a public dataset. See [case-st
 | Groups | Campaign 936 (baseline) against campaign 1178 |
 | Spec | [spec.yaml](spec.yaml), tree in [tree.yaml](tree.yaml) |
 
-Regenerate the pack:
+Rebuild the pack:
 
 ```bash
 decisionpack run cases/funnel-lab/spec.yaml cases/funnel-lab/data/KAG_conversion_data.csv --out cases/funnel-lab/pack

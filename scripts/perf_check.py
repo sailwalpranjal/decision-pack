@@ -3,7 +3,7 @@
     python scripts/perf_check.py            # 1,000,000 rows
     python scripts/perf_check.py --rows 250000
 
-The data are random, generated with a fixed seed, shaped like the funnel case: two groups, a
+The data are random, drawn with a fixed seed, shaped like the funnel case: two groups, a
 four-factor funnel and three segment dimensions. The point is the time and memory of the pipeline,
 not the numbers it finds. Results depend on the machine; the README records one measured run.
 """
@@ -144,7 +144,7 @@ def main() -> None:
     print(
         f"rows: {args.rows:,}  (frame in memory: {df.memory_usage(deep=True).sum() / 1e6:.0f} MB)"
     )
-    print(f"generate table: {t_gen:.1f} s")
+    print(f"build table:   {t_gen:.1f} s")
     print(f"run_analysis:   {t_run:.1f} s")
     print(
         f"gap {result.gap:.2f}, 95% interval {result.gap_ci[0]:.2f} to {result.gap_ci[1]:.2f}, "

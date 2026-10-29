@@ -90,7 +90,7 @@ class RecommendationSpec(_Strict):
 
 
 class ContextSpec(_Strict):
-    """Optional wording for the SCQA summary. Anything left out is generated from results."""
+    """Optional wording for the SCQA summary. Anything left out is built from the results."""
 
     situation: str | None = None
     complication: str | None = None

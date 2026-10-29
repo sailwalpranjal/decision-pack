@@ -45,7 +45,7 @@
 
 **Context.** The memo is Markdown, but many decision-makers expect a deck.
 
-**Options.** Markdown-to-slides tools; HTML slides; generate PPTX directly; export PDF only.
+**Options.** Markdown-to-slides tools; HTML slides; build PPTX directly; export PDF only.
 
 **Decision.** python-pptx, with one slide per conclusion, a sentence as the title, a chart or table as the body, and a methods-and-limits appendix.
 

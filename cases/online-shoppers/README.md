@@ -10,7 +10,7 @@ Observational comparison of new and returning visitors. See [case-study.md](case
 | Groups | Returning visitors (baseline) against new visitors |
 | Spec | [spec.yaml](spec.yaml), tree in [tree.yaml](tree.yaml) |
 
-Regenerate the pack:
+Rebuild the pack:
 
 ```bash
 decisionpack run cases/online-shoppers/spec.yaml cases/online-shoppers/data/online_shoppers_intention.csv --out cases/online-shoppers/pack
