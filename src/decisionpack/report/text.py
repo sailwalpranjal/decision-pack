@@ -13,6 +13,8 @@ DISCLAIMER_OBSERVATIONAL = (
     "nothing here shows that one factor caused another."
 )
 
+CURRENCY_SYMBOLS = ("$", "£", "€")
+
 LIMITS = [
     "Observational data: groups were not randomly assigned, so gaps are not effects.",
     "Shapley attributions depend on how the metric is split into factors. A different "
@@ -33,8 +35,8 @@ def fmt_value(x: float, metric: MetricSpec, signed: bool = False) -> str:
         return fmt_gap(x, metric, signed=True)
     sign = "+" if signed and x > 0 else ("-" if x < 0 else "")
     body = f"{abs(x):,.{metric.decimals}f}"
-    if metric.unit == "$":
-        return f"{sign}${body}"
+    if metric.unit in CURRENCY_SYMBOLS:
+        return f"{sign}{metric.unit}{body}"
     if metric.unit == "%":
         return f"{sign}{abs(x) * 100:,.{metric.decimals}f}%"
     return f"{sign}{body}{(' ' + metric.unit) if metric.unit else ''}"

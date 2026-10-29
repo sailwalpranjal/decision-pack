@@ -84,6 +84,9 @@ def test_number_formats():
     assert fmt_value(1234.5, dollars) == "$1,234.50"
     assert fmt_value(-3.74, dollars, signed=True) == "-$3.74"
     assert fmt_value(3.74, dollars, signed=True) == "+$3.74"
+    pounds = MetricSpec(name="m", label="AOV", numerator="a", denominator="b", unit="£")
+    assert fmt_value(1234.5, pounds) == "£1,234.50"
+    assert fmt_value(-2.0, pounds, signed=True) == "-£2.00"
     pc = MetricSpec(name="m", label="Rate", numerator="a", denominator="b", unit="%")
     assert fmt_value(0.0925, pc) == "9.25%"
     plain = MetricSpec(
