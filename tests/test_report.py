@@ -272,3 +272,12 @@ def test_gap_between_percentages_is_in_percentage_points():
     dollars = MetricSpec(name="m", label="Cost", numerator="a", denominator="b", unit="$")
     assert fmt_gap(48.02, dollars) == "$48.02"
     assert fmt_gap(float("nan"), pc) == "n/a"
+
+
+def test_deck_metadata_names_the_tool_and_the_analysis_not_the_library_default(tmp_path, result):
+    path = tmp_path / "deck.pptx"
+    build_deck(result, path)
+    props = Presentation(str(path)).core_properties
+    assert props.title == result.spec.title
+    assert props.author == "decision-pack" and props.last_modified_by == "decision-pack"
+    assert "Canny" not in (props.author, props.last_modified_by)

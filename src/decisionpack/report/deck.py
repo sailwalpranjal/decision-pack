@@ -4,6 +4,7 @@ so a reader who only reads the titles gets the argument (the pyramid principle).
 from __future__ import annotations
 
 import math
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -374,4 +375,12 @@ def build_deck(result: AnalysisResult, path: str | Path) -> None:
 
     if math.isnan(result.metric_a):
         raise ValueError("metric is undefined")
+    props = prs.core_properties
+    props.title = spec.title
+    props.author = "decision-pack"
+    props.last_modified_by = "decision-pack"
+    props.subject = "Decision pack"
+    props.comments = ""
+    props.keywords = ""
+    props.created = props.modified = datetime.now(UTC).replace(microsecond=0, tzinfo=None)
     prs.save(str(path))
