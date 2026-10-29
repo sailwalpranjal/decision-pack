@@ -18,6 +18,7 @@ from decisionpack.report.text import (
     LIMITS,
     build_scqa,
     factor_label,
+    fmt_gap,
     fmt_value,
     pct,
     top_driver,
@@ -42,10 +43,10 @@ def slide_titles(result: AnalysisResult) -> list[str]:
     label = factor_label(result, name)
     titles = [
         f"{m.label} is {result.ratio:.2f} times {'as high' if result.gap > 0 else 'as low'} "
-        f"in {b} as in {a}, and the {label.lower()} factor explains {pct(share)} of the gap.",
+        f"for {b} as for {a}, and the {label.lower()} factor explains {pct(share)} of the gap.",
     ]
     titles.append(
-        f"The {label.lower()} factor carries {pct(share)} of the {fmt_value(abs(result.gap), m)} "
+        f"The {label.lower()} factor carries {pct(share)} of the {fmt_gap(abs(result.gap), m)} "
         "gap while the other factors play smaller or opposing parts."
     )
     if result.sensitivity is not None:
@@ -62,7 +63,7 @@ def slide_titles(result: AnalysisResult) -> list[str]:
         titles.append(
             f"The segment scan finds that {len(sig)} of {result.scan.family_size} segments differ "
             f"after correcting for the "
-            f"number of comparisons, and the {seg_label} is {seg_dir} in {b} overall."
+            f"number of comparisons, and the {seg_label} is {seg_dir} for {b} overall."
         )
     if result.tree is not None:
         c = tree_counts(result)

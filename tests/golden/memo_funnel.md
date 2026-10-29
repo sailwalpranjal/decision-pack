@@ -6,7 +6,7 @@
 
 **Situation.** Cost per approved conversion was $15.81 for Campaign 936 and $63.83 for Campaign 1178.
 
-**Complication.** Campaign 1178 is higher by $48.02 (4.04x), which is worse. The 95% bootstrap interval for the gap is +$40.44 to +$55.34.
+**Complication.** The gap between them is $48.02 (4.04x), higher for Campaign 1178, which is worse. The 95% bootstrap interval for the gap is +$40.44 to +$55.34.
 
 **Question.** Which part of cost per approved conversion explains the gap, and what should we do?
 
@@ -23,7 +23,7 @@ Cost is split into factors that multiply to cost per approved conversion. Each r
 | Click to enquiry (clicks needed per enquiry) | 3.695 | 13.51 | +$44.84 | 93.4% | +$44.47 |
 | Enquiry to approval (enquiries needed per approval) | 2.934 | 3.061 | +$1.66 | 3.5% | +$2.64 |
 
-Sequential substitution used the order cost_per_impression -> impressions_per_click -> clicks_per_enquiry -> enquiries_per_approved. It depends on that order; the Shapley column averages over every order and does not.
+Sequential substitution used the order Media cost -> Ad appeal -> Click to enquiry -> Enquiry to approval. It depends on that order; the Shapley column averages over every order and does not.
 For click to enquiry, the share ranges from 66.8% to 126.5% across the 24 possible orders.
 
 ## Where the gap concentrates

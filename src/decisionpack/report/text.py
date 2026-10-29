@@ -29,6 +29,8 @@ def fmt_value(x: float, metric: MetricSpec, signed: bool = False) -> str:
     """Format a value of the headline metric, with its unit."""
     if math.isnan(x):
         return "n/a"
+    if signed and metric.unit == "%":
+        return fmt_gap(x, metric, signed=True)
     sign = "+" if signed and x > 0 else ("-" if x < 0 else "")
     body = f"{abs(x):,.{metric.decimals}f}"
     if metric.unit == "$":
@@ -36,6 +38,16 @@ def fmt_value(x: float, metric: MetricSpec, signed: bool = False) -> str:
     if metric.unit == "%":
         return f"{sign}{abs(x) * 100:,.{metric.decimals}f}%"
     return f"{sign}{body}{(' ' + metric.unit) if metric.unit else ''}"
+
+
+def fmt_gap(x: float, metric: MetricSpec, signed: bool = False) -> str:
+    """Format a difference. A gap between two percentages is in percentage points, not percent."""
+    if math.isnan(x):
+        return "n/a"
+    if metric.unit == "%":
+        sign = "+" if signed and x > 0 else ("-" if x < 0 else "")
+        return f"{sign}{abs(x) * 100:,.{metric.decimals}f} pp"
+    return fmt_value(x, metric, signed=signed)
 
 
 def pct(x: float, digits: int = 0) -> str:
@@ -89,9 +101,9 @@ def build_scqa(result: AnalysisResult) -> Scqa:
         f"{fmt_value(result.metric_b, m)} for {b}."
     )
     complication = ctx.complication or (
-        f"{b} is {higher} by {fmt_value(abs(result.gap), m)} ({result.ratio:.2f}x), which is "
-        f"{worse}. The 95% bootstrap interval for the gap is {fmt_value(lo, m, signed=True)} to "
-        f"{fmt_value(hi, m, signed=True)}."
+        f"The gap between them is {fmt_gap(abs(result.gap), m)} ({result.ratio:.2f}x), "
+        f"{higher} for {b}, which is {worse}. The 95% bootstrap interval for the gap is "
+        f"{fmt_gap(lo, m, signed=True)} to {fmt_gap(hi, m, signed=True)}."
     )
     question = ctx.question or (
         f"Which part of {m.label.lower()} explains the gap, and what should we do?"

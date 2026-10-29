@@ -16,7 +16,7 @@ from decisionpack.pack import write_pack
 from decisionpack.report.charts import tree_svg, waterfall_levels, waterfall_svg
 from decisionpack.report.deck import build_deck, slide_titles
 from decisionpack.report.memo import render_memo
-from decisionpack.report.text import build_scqa, fmt_value, pct
+from decisionpack.report.text import build_scqa, fmt_gap, fmt_value, pct
 from decisionpack.run import run_analysis
 from decisionpack.serialize import result_to_dict
 from decisionpack.spec import MetricSpec, load_spec
@@ -261,3 +261,14 @@ def test_cli_reports_errors_without_a_traceback(tmp_path, capsys):
 def test_cli_requires_a_command():
     with pytest.raises(SystemExit):
         cli_main([])
+
+
+def test_gap_between_percentages_is_in_percentage_points():
+    pc = MetricSpec(name="m", label="Rate", numerator="a", denominator="b", unit="%", decimals=1)
+    assert fmt_gap(0.1098, pc) == "11.0 pp"
+    assert fmt_gap(-0.021, pc, signed=True) == "-2.1 pp"
+    assert fmt_gap(0.021, pc, signed=True) == "+2.1 pp"
+    assert fmt_value(0.021, pc, signed=True) == "+2.1 pp"
+    dollars = MetricSpec(name="m", label="Cost", numerator="a", denominator="b", unit="$")
+    assert fmt_gap(48.02, dollars) == "$48.02"
+    assert fmt_gap(float("nan"), pc) == "n/a"

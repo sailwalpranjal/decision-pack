@@ -11,6 +11,7 @@ from decisionpack.report.text import (
     build_scqa,
     factor_description,
     factor_label,
+    fmt_gap,
     fmt_value,
     pct,
     top_driver,
@@ -51,7 +52,7 @@ def render_memo(result: AnalysisResult) -> str:
     add("")
     add(
         f"Cost is split into factors that multiply to {m.label.lower()}. Each row shows how much "
-        f"of the {fmt_value(abs(result.gap), m)} gap a factor carries."
+        f"of the {fmt_gap(abs(result.gap), m)} gap a factor carries."
     )
     add("")
     add(
@@ -79,7 +80,7 @@ def render_memo(result: AnalysisResult) -> str:
             )
         )
     add("")
-    order = " -> ".join(result.sequential.order or ())
+    order = " -> ".join(factor_label(result, n) for n in result.sequential.order or ())
     add(
         f"Sequential substitution used the order {order}. It depends on that order; the Shapley "
         "column averages over every order and does not."
