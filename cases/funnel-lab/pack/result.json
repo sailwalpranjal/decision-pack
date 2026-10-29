@@ -1,0 +1,773 @@
+{
+  "title": "Why campaign 1178 costs four times as much per approved conversion as campaign 936",
+  "observational": true,
+  "metric": {
+    "name": "cost_per_approved",
+    "label": "Cost per approved conversion",
+    "unit": "$",
+    "lower_is_better": true,
+    "baseline": 15.81076502149727,
+    "comparison": 63.83274077822706,
+    "gap": 48.021975756729795,
+    "ratio": 4.037296151795072,
+    "gap_ci": [
+      40.441670153085795,
+      55.343856676674186
+    ]
+  },
+  "groups": {
+    "baseline": "Campaign 936",
+    "comparison": "Campaign 1178",
+    "n_baseline": 464,
+    "n_comparison": 625
+  },
+  "bridge": {
+    "factors": [
+      "cost_per_impression",
+      "impressions_per_click",
+      "clicks_per_enquiry",
+      "enquiries_per_approved"
+    ],
+    "baseline_factors": {
+      "cost_per_impression": 0.00035596744992874796,
+      "impressions_per_click": 4096.868447580645,
+      "clicks_per_enquiry": 3.6945996275605215,
+      "enquiries_per_approved": 2.9344262295081966
+    },
+    "comparison_factors": {
+      "cost_per_impression": 0.00027175637199460824,
+      "impressions_per_click": 5678.82100476877,
+      "clicks_per_enquiry": 13.513675533907831,
+      "enquiries_per_approved": 3.0607798165137616
+    },
+    "shapley": {
+      "cost_per_impression": -10.997558928090069,
+      "impressions_per_click": 12.518508433632258,
+      "clicks_per_enquiry": 44.83649044327835,
+      "enquiries_per_approved": 1.6645358079092558
+    },
+    "shapley_shares": {
+      "cost_per_impression": -0.2290109633098316,
+      "impressions_per_click": 0.2606829110290806,
+      "clicks_per_enquiry": 0.9336660921743722,
+      "enquiries_per_approved": 0.03466196010637875
+    },
+    "sequential": {
+      "cost_per_impression": -3.7403463875424077,
+      "impressions_per_click": 4.660835432876127,
+      "clicks_per_enquiry": 44.46637531847268,
+      "enquiries_per_approved": 2.635111392923399
+    },
+    "sequential_order": [
+      "cost_per_impression",
+      "impressions_per_click",
+      "clicks_per_enquiry",
+      "enquiries_per_approved"
+    ],
+    "waterfall": [
+      {
+        "label": "Campaign 936",
+        "start": 0.0,
+        "end": 15.81076502149727,
+        "delta": 15.81076502149727
+      },
+      {
+        "label": "Media cost",
+        "start": 15.81076502149727,
+        "end": 4.813206093407201,
+        "delta": -10.997558928090069
+      },
+      {
+        "label": "Ad appeal",
+        "start": 4.813206093407201,
+        "end": 17.33171452703946,
+        "delta": 12.518508433632258
+      },
+      {
+        "label": "Click to enquiry",
+        "start": 17.33171452703946,
+        "end": 62.16820497031781,
+        "delta": 44.83649044327835
+      },
+      {
+        "label": "Enquiry to approval",
+        "start": 62.16820497031781,
+        "end": 63.83274077822706,
+        "delta": 1.6645358079092558
+      },
+      {
+        "label": "Campaign 1178",
+        "start": 0.0,
+        "end": 63.83274077822706,
+        "delta": 63.83274077822706
+      }
+    ],
+    "order_sensitivity": {
+      "n_orders": 24,
+      "min_share": {
+        "cost_per_impression": -0.4119011063564447,
+        "impressions_per_click": 0.09705630306605945,
+        "clicks_per_enquiry": 0.6680139685413398,
+        "enquiries_per_approved": 0.010822975819671338
+      },
+      "max_share": {
+        "cost_per_impression": -0.07788822364348963,
+        "impressions_per_click": 0.48503077375077386,
+        "clicks_per_enquiry": 1.2651183338105385,
+        "enquiries_per_approved": 0.07187692779066514
+      }
+    }
+  },
+  "segments": {
+    "rate_baseline": 0.09223790322580645,
+    "rate_comparison": 0.024176555395364313,
+    "gap": -0.06806134783044214,
+    "alpha": 0.05,
+    "correction": "bh",
+    "family_size": 8,
+    "rows": [
+      {
+        "dimension": "gender",
+        "value": "F",
+        "num_a": 96.0,
+        "den_a": 1633.0,
+        "num_b": 391.0,
+        "den_b": 22193.0,
+        "rate_a": 0.05878750765462339,
+        "rate_b": 0.01761816789077637,
+        "diff": -0.04116933976384703,
+        "ci_low": -0.05270872506301453,
+        "ci_high": -0.029629954464679524,
+        "weight_a": 0.8230846774193549,
+        "weight_b": 0.6153099700565599,
+        "rate_effect": -0.029608878978217453,
+        "mix_effect": -0.00793758343865105,
+        "contribution": -0.0375464624168685,
+        "z": -11.347363501973836,
+        "p_value": 7.643272655481255e-30,
+        "p_holm": 4.585963593288753e-29,
+        "p_bh": 2.038206041461668e-29,
+        "significant": true
+      },
+      {
+        "dimension": "age",
+        "value": "30-34",
+        "num_a": 88.0,
+        "den_a": 286.0,
+        "num_b": 395.0,
+        "den_b": 9140.0,
+        "rate_a": 0.3076923076923077,
+        "rate_b": 0.04321663019693654,
+        "diff": -0.26447567749537115,
+        "ci_low": -0.3181279246522799,
+        "ci_high": -0.2108234303384624,
+        "weight_a": 0.14415322580645162,
+        "weight_b": 0.2534102251303094,
+        "rate_effect": -0.05257293151694881,
+        "mix_effect": 0.01916962879485041,
+        "contribution": -0.033403302722098405,
+        "z": -19.975165658812358,
+        "p_value": 9.058285668471784e-89,
+        "p_holm": 6.340799967930249e-88,
+        "p_bh": 3.6233142673887135e-88,
+        "significant": true
+      },
+      {
+        "dimension": "gender",
+        "value": "M",
+        "num_a": 87.0,
+        "den_a": 351.0,
+        "num_b": 481.0,
+        "den_b": 13875.0,
+        "rate_a": 0.24786324786324787,
+        "rate_b": 0.034666666666666665,
+        "diff": -0.2131965811965812,
+        "ci_low": -0.25846891118584053,
+        "ci_high": -0.16792425120732185,
+        "weight_a": 0.17691532258064516,
+        "weight_b": 0.38469002994344015,
+        "rate_effect": -0.05986617056991787,
+        "mix_effect": 0.029351285156344237,
+        "contribution": -0.030514885413573636,
+        "z": -20.147630170738854,
+        "p_value": 2.8230873470680124e-90,
+        "p_holm": 2.25846987765441e-89,
+        "p_bh": 2.25846987765441e-89,
+        "significant": true
+      },
+      {
+        "dimension": "age",
+        "value": "45-49",
+        "num_a": 36.0,
+        "den_a": 1112.0,
+        "num_b": 169.0,
+        "den_b": 12715.0,
+        "rate_a": 0.03237410071942446,
+        "rate_b": 0.013291388124262681,
+        "diff": -0.01908271259516178,
+        "ci_low": -0.029674194980343235,
+        "ci_high": -0.008491230209980324,
+        "weight_a": 0.5604838709677419,
+        "weight_b": 0.35252855716979037,
+        "rate_effect": -0.008711376880979662,
+        "mix_effect": -0.0047481905311129065,
+        "contribution": -0.013459567412092569,
+        "z": -5.049138668507027,
+        "p_value": 4.4380651112340624e-07,
+        "p_holm": 8.876130222468125e-07,
+        "p_bh": 5.072074412838928e-07,
+        "significant": true
+      },
+      {
+        "dimension": "interest",
+        "value": "16",
+        "num_a": 32.0,
+        "den_a": 796.0,
+        "num_b": 101.0,
+        "den_b": 4291.0,
+        "rate_a": 0.04020100502512563,
+        "rate_b": 0.02353763691447215,
+        "diff": -0.016663368110653477,
+        "ci_low": -0.03104337562541931,
+        "ci_high": -0.0022833605958876412,
+        "weight_a": 0.4012096774193548,
+        "weight_b": 0.11896972385494067,
+        "rate_effect": -0.004333970423506458,
+        "mix_effect": -0.008994795670645447,
+        "contribution": -0.013328766094151904,
+        "z": -2.7059865073084777,
+        "p_value": 0.006810181290800128,
+        "p_holm": 0.006810181290800128,
+        "p_bh": 0.006810181290800128,
+        "significant": true
+      },
+      {
+        "dimension": "age",
+        "value": "35-39",
+        "num_a": 34.0,
+        "den_a": 275.0,
+        "num_b": 167.0,
+        "den_b": 6802.0,
+        "rate_a": 0.12363636363636364,
+        "rate_b": 0.024551602469861804,
+        "diff": -0.09908476116650183,
+        "ci_low": -0.13816244978415512,
+        "ci_high": -0.060007072548848545,
+        "weight_a": 0.13860887096774194,
+        "weight_b": 0.18858822224686703,
+        "rate_effect": -0.016210122917771585,
+        "mix_effect": 0.003703169206681062,
+        "contribution": -0.012506953711090523,
+        "z": -9.697285069764728,
+        "p_value": 3.096277883297988e-22,
+        "p_holm": 1.548138941648994e-21,
+        "p_bh": 6.192555766595976e-22,
+        "significant": true
+      },
+      {
+        "dimension": "interest",
+        "value": "10",
+        "num_a": 21.0,
+        "den_a": 236.0,
+        "num_b": 68.0,
+        "den_b": 3077.0,
+        "rate_a": 0.08898305084745763,
+        "rate_b": 0.022099447513812154,
+        "diff": -0.06688360333364547,
+        "ci_low": -0.1035783727615793,
+        "ci_high": -0.030188833905711643,
+        "weight_a": 0.11895161290322581,
+        "weight_b": 0.08531107907286237,
+        "rate_effect": -0.006830912432995645,
+        "mix_effect": -0.001868437272041794,
+        "contribution": -0.008699349705037438,
+        "z": -6.124316268602247,
+        "p_value": 9.10738366547768e-10,
+        "p_holm": 2.732215099643304e-09,
+        "p_bh": 1.2143178220636907e-09,
+        "significant": true
+      },
+      {
+        "dimension": "age",
+        "value": "40-44",
+        "num_a": 25.0,
+        "den_a": 311.0,
+        "num_b": 141.0,
+        "den_b": 7411.0,
+        "rate_a": 0.08038585209003216,
+        "rate_b": 0.019025772500337337,
+        "diff": -0.06136007958969482,
+        "ci_low": -0.09173737373823647,
+        "ci_high": -0.030982785441153165,
+        "weight_a": 0.15675403225806453,
+        "weight_b": 0.20547299545303316,
+        "rate_effect": -0.011113139624945773,
+        "mix_effect": 0.002421615639785125,
+        "contribution": -0.008691523985160649,
+        "z": -7.309192424093044,
+        "p_value": 2.6875267586071366e-13,
+        "p_holm": 1.0750107034428546e-12,
+        "p_bh": 4.3000428137714184e-13,
+        "significant": true
+      }
+    ],
+    "excluded": [
+      {
+        "dimension": "interest",
+        "value": "100",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "101",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "102",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "103",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "104",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "105",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "106",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "107",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "108",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "109",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "110",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "111",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "112",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "113",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "114",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "15",
+        "reason": "below the minimum denominator of 200 (A=45, B=1554)"
+      },
+      {
+        "dimension": "interest",
+        "value": "18",
+        "reason": "below the minimum denominator of 200 (A=36, B=1488)"
+      },
+      {
+        "dimension": "interest",
+        "value": "19",
+        "reason": "below the minimum denominator of 200 (A=14, B=1174)"
+      },
+      {
+        "dimension": "interest",
+        "value": "2",
+        "reason": "below the minimum denominator of 200 (A=5, B=306)"
+      },
+      {
+        "dimension": "interest",
+        "value": "20",
+        "reason": "below the minimum denominator of 200 (A=30, B=1196)"
+      },
+      {
+        "dimension": "interest",
+        "value": "21",
+        "reason": "below the minimum denominator of 200 (A=18, B=493)"
+      },
+      {
+        "dimension": "interest",
+        "value": "22",
+        "reason": "below the minimum denominator of 200 (A=43, B=674)"
+      },
+      {
+        "dimension": "interest",
+        "value": "23",
+        "reason": "below the minimum denominator of 200 (A=3, B=372)"
+      },
+      {
+        "dimension": "interest",
+        "value": "24",
+        "reason": "below the minimum denominator of 200 (A=8, B=410)"
+      },
+      {
+        "dimension": "interest",
+        "value": "25",
+        "reason": "below the minimum denominator of 200 (A=8, B=1057)"
+      },
+      {
+        "dimension": "interest",
+        "value": "26",
+        "reason": "below the minimum denominator of 200 (A=156, B=957)"
+      },
+      {
+        "dimension": "interest",
+        "value": "27",
+        "reason": "below the minimum denominator of 200 (A=186, B=3220)"
+      },
+      {
+        "dimension": "interest",
+        "value": "28",
+        "reason": "below the minimum denominator of 200 (A=43, B=1977)"
+      },
+      {
+        "dimension": "interest",
+        "value": "29",
+        "reason": "below the minimum denominator of 200 (A=197, B=3109)"
+      },
+      {
+        "dimension": "interest",
+        "value": "30",
+        "reason": "below the minimum denominator of 200 (A=8, B=380)"
+      },
+      {
+        "dimension": "interest",
+        "value": "31",
+        "reason": "below the minimum denominator of 200 (A=6, B=189)"
+      },
+      {
+        "dimension": "interest",
+        "value": "32",
+        "reason": "below the minimum denominator of 200 (A=8, B=1129)"
+      },
+      {
+        "dimension": "interest",
+        "value": "36",
+        "reason": "below the minimum denominator of 200 (A=2, B=126)"
+      },
+      {
+        "dimension": "interest",
+        "value": "63",
+        "reason": "below the minimum denominator of 200 (A=53, B=1615)"
+      },
+      {
+        "dimension": "interest",
+        "value": "64",
+        "reason": "below the minimum denominator of 200 (A=49, B=940)"
+      },
+      {
+        "dimension": "interest",
+        "value": "65",
+        "reason": "below the minimum denominator of 200 (A=24, B=343)"
+      },
+      {
+        "dimension": "interest",
+        "value": "66",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "interest",
+        "value": "7",
+        "reason": "below the minimum denominator of 200 (A=10, B=400)"
+      }
+    ],
+    "simpson": [
+      {
+        "stratifier": "age",
+        "overall_diff": -0.06806134783044214,
+        "stratum_diffs": {
+          "30-34": -0.26447567749537115,
+          "35-39": -0.09908476116650183,
+          "40-44": -0.06136007958969482,
+          "45-49": -0.01908271259516178
+        },
+        "stratum_weights_a": {
+          "30-34": 0.14415322580645162,
+          "35-39": 0.13860887096774194,
+          "40-44": 0.15675403225806453,
+          "45-49": 0.5604838709677419
+        },
+        "stratum_weights_b": {
+          "30-34": 0.2534102251303094,
+          "35-39": 0.18858822224686703,
+          "40-44": 0.20547299545303316,
+          "45-49": 0.35252855716979037
+        },
+        "reversed": false,
+        "message": "No reversal across 'age' (4 levels compared)."
+      },
+      {
+        "stratifier": "gender",
+        "overall_diff": -0.06806134783044214,
+        "stratum_diffs": {
+          "F": -0.04116933976384703,
+          "M": -0.2131965811965812
+        },
+        "stratum_weights_a": {
+          "F": 0.8230846774193549,
+          "M": 0.17691532258064516
+        },
+        "stratum_weights_b": {
+          "F": 0.6153099700565599,
+          "M": 0.38469002994344015
+        },
+        "reversed": false,
+        "message": "No reversal across 'gender' (2 levels compared)."
+      }
+    ]
+  },
+  "tree": {
+    "results": [
+      {
+        "node_id": "gap",
+        "statement": "Cost per approved conversion is higher in campaign 1178 than in campaign 936.",
+        "status": "untested",
+        "detail": "no test is attached to this node",
+        "statistic": null
+      },
+      {
+        "node_id": "media",
+        "statement": "Media got more expensive, so each impression costs more.",
+        "status": "refuted",
+        "detail": "-23.1% of the gap (threshold 25%; Shapley split)",
+        "statistic": -0.2307833298634909
+      },
+      {
+        "node_id": "appeal",
+        "statement": "The ads attract fewer clicks per impression.",
+        "status": "supported",
+        "detail": "26.3% of the gap (threshold 25%; Shapley split)",
+        "statistic": 0.2628208681354639
+      },
+      {
+        "node_id": "post_click",
+        "statement": "Clicks turn into approved conversions at a much lower rate.",
+        "status": "supported",
+        "detail": "96.8% of the gap (threshold 25%; Shapley split)",
+        "statistic": 0.967962461728027
+      },
+      {
+        "node_id": "enquiry",
+        "statement": "Fewer clicks turn into an enquiry.",
+        "status": "supported",
+        "detail": "rate 27.07% -> 7.40% (diff -19.67%, p = 5.06e-207); the gap is in the claimed direction (lower)",
+        "statistic": -0.1966662097936872
+      },
+      {
+        "node_id": "approval",
+        "statement": "Fewer enquiries are approved.",
+        "status": "untested",
+        "detail": "not significant (p = 0.527) and underpowered: power to detect a 20% change is 68%, below 80%",
+        "statistic": -0.01406799776452583
+      }
+    ],
+    "mece_problems": []
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "id": "R1",
+      "title": "Test a shorter enquiry form on the campaign 1178 landing page",
+      "rationale": "Most clicks never become an enquiry, and that stage carries the largest part of the cost gap.",
+      "impact_unit": "extra approved conversions over the same period",
+      "low": 50.495200000000004,
+      "base": 176.91354,
+      "high": 389.53439999999995,
+      "score": 6.333333333333333,
+      "arithmetic": "ICE = (8 + 5 + 6) / 3 = 6.33",
+      "assumptions": [
+        {
+          "name": "clicks",
+          "low": 36068.0,
+          "base": 36068.0,
+          "high": 36068.0,
+          "source": "Campaign 1178 clicks in the dataset"
+        },
+        {
+          "name": "lift",
+          "low": 0.005,
+          "base": 0.015,
+          "high": 0.03,
+          "source": "My judgement, no test has been run; absolute rise in the click-to-enquiry rate"
+        },
+        {
+          "name": "approval_rate",
+          "low": 0.28,
+          "base": 0.327,
+          "high": 0.36,
+          "source": "Approved per enquiry in campaign 1178 (about 32.7%); range is my judgement"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "lift",
+          "at_low": 58.971180000000004,
+          "at_high": 353.82708,
+          "swing": 294.8559
+        },
+        {
+          "name": "approval_rate",
+          "at_low": 151.4856,
+          "at_high": 194.76719999999997,
+          "swing": 43.28159999999997
+        },
+        {
+          "name": "clicks",
+          "at_low": 176.91354,
+          "at_high": 176.91354,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "rank": 2,
+      "id": "R2",
+      "title": "Check the ad promise against the landing page before scaling spend further",
+      "rationale": "Campaign 1178 spent 19 times as much and the post-click funnel did not keep up.",
+      "impact_unit": "extra approved conversions over the same period",
+      "low": 17.44070186432712,
+      "base": 69.76280745730848,
+      "high": 130.8052639824534,
+      "score": 5.666666666666667,
+      "arithmetic": "ICE = (7 + 4 + 6) / 3 = 5.67",
+      "assumptions": [
+        {
+          "name": "spend",
+          "low": 55662.0,
+          "base": 55662.0,
+          "high": 55662.0,
+          "source": "Campaign 1178 spend in the dataset"
+        },
+        {
+          "name": "improvement",
+          "low": 0.02,
+          "base": 0.08,
+          "high": 0.15,
+          "source": "My judgement; share of cost per approved conversion removed"
+        },
+        {
+          "name": "cost_per_approved",
+          "low": 63.83,
+          "base": 63.83,
+          "high": 63.83,
+          "source": "Campaign 1178 in the dataset"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "improvement",
+          "at_low": 17.44070186432712,
+          "at_high": 130.8052639824534,
+          "swing": 113.36456211812627
+        },
+        {
+          "name": "spend",
+          "at_low": 69.76280745730848,
+          "at_high": 69.76280745730848,
+          "swing": 0.0
+        },
+        {
+          "name": "cost_per_approved",
+          "at_low": 69.76280745730848,
+          "at_high": 69.76280745730848,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "rank": 3,
+      "id": "R3",
+      "title": "Run a landing-page test for the female audience, which clicks more but converts less",
+      "rationale": "Across all three campaigns, female ad sets have a higher click rate than male ones (0.0208% against 0.0145%) but a higher cost per approved conversion ($69.70 against $41.44). That pattern is observational and the cause is unknown, which is why this is a test and not a rollout.",
+      "impact_unit": "extra approved conversions over the same period",
+      "low": 0.0,
+      "base": 88.72728000000001,
+      "high": 252.476,
+      "score": 5.0,
+      "arithmetic": "ICE = (5 + 3 + 7) / 3 = 5.00",
+      "assumptions": [
+        {
+          "name": "clicks",
+          "low": 36068.0,
+          "base": 36068.0,
+          "high": 36068.0,
+          "source": "Campaign 1178 clicks in the dataset"
+        },
+        {
+          "name": "share",
+          "low": 0.5,
+          "base": 0.615,
+          "high": 0.7,
+          "source": "Female share of campaign 1178 clicks in the dataset (61.5%); range is my judgement"
+        },
+        {
+          "name": "lift",
+          "low": 0.0,
+          "base": 0.004,
+          "high": 0.01,
+          "source": "My judgement; absolute rise in click-to-approved rate for that audience"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "lift",
+          "at_low": 0.0,
+          "at_high": 221.8182,
+          "swing": 221.8182
+        },
+        {
+          "name": "share",
+          "at_low": 72.136,
+          "at_high": 100.9904,
+          "swing": 28.8544
+        },
+        {
+          "name": "clicks",
+          "at_low": 88.72728000000001,
+          "at_high": 88.72728000000001,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "warnings": [
+    "Observational data: the groups were not randomly assigned, so gaps describe differences, not causes.",
+    "The segment scan compared 8 segments; p-values are adjusted for that (BH).",
+    "38 segment(s) were set aside; see the scan table."
+  ]
+}
