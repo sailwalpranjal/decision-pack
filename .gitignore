@@ -11,4 +11,3 @@ dist/
 *.egg-info/
 web/node_modules/
 web/.next/
-.claude/
