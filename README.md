@@ -7,7 +7,7 @@ Give it a metric and a table. It returns an analysis of why two segments differ:
 
 ## Who it is for, and the problem
 
-It is for a product manager or analyst who has to explain a metric gap and recommend something. In my funnel lab I split a cost gap by substituting factors one at a time, and then found the answer depended on the order: the "98.1% is post-click" headline can land anywhere from 70.8% to 128.5% for the same data. That is not a finding. decision-pack replaces the split with Shapley attribution, which averages over every order and still adds up exactly to the gap, and builds the rest of a decision around it.
+It is for a product manager or analyst who has to explain a metric gap and recommend something. My funnel lab split a cost gap by substituting factors one at a time, and its limits section notes that the answer depends on the order. Measured here: the "98.1% is post-click" headline can land anywhere from 70.8% to 128.5% for the same data. That is not a finding. decision-pack replaces the split with Shapley attribution, which averages over every order and still adds up exactly to the gap, and builds the rest of a decision around it.
 
 It is decision support for analysts, not an oracle. I have not interviewed any users; [the interview plan](docs/research/interview-guide.md) is written and [the findings file](docs/research/findings.md) is empty on purpose.
 
@@ -64,7 +64,7 @@ A spec says what to compare (`groups`), what the metric is (`sum(numerator) / su
 
 All of this is reproducible from the repository.
 
-- **Tests.** The suite is in `tests/`; run `pytest`. It includes property-based tests (Hypothesis) that check the Shapley attributions sum to the gap and do not change when the factor order changes, and that every statistical function agrees with SciPy or statsmodels. The coverage figure and test count are in the [CI run](.github/workflows/ci.yml) output; the numbers I measured for this README are under "Measured".
+- **Tests.** `pytest` runs 264 tests (measured when this README was written) with 95% line and branch coverage (`pytest --cov`). They include property-based tests (Hypothesis) that check the Shapley attributions sum to the gap and do not change when the factor order changes, and that every statistical function agrees with SciPy or statsmodels. Committed case packs are compared with a fresh run whenever the data file is present.
 - **It reproduces the funnel lab.** Campaigns 936 against 1178: $15.81 against $63.83, a $48.02 gap. The old sequential split (CPM -$3.74, CTR +$4.66, conversion +$47.10) and the Shapley split (CPM -$11.08, CTR +$12.62, conversion +$46.48) both sum to $48.02, in `tests/test_bridge.py`.
 - **Type-checked and linted.** `mypy` in strict mode and `ruff` are clean.
 
