@@ -1,0 +1,29 @@
+# Hypothesis tree for the funnel lab case. Each parent is the product of its children,
+# so the numbers in both campaigns must multiply back (that is the MECE check).
+id: gap
+statement: Cost per approved conversion is higher in campaign 1178 than in campaign 936.
+metric: cost_per_approved
+combine: product
+children:
+  - id: media
+    statement: Media got more expensive, so each impression costs more.
+    metric: cost_per_impression
+    test: {kind: share_of_gap, min_share: 0.25}
+  - id: appeal
+    statement: The ads attract fewer clicks per impression.
+    metric: impressions_per_click
+    test: {kind: share_of_gap, min_share: 0.25}
+  - id: post_click
+    statement: Clicks turn into approved conversions at a much lower rate.
+    metric: clicks_per_approved
+    combine: product
+    test: {kind: share_of_gap, min_share: 0.25}
+    children:
+      - id: enquiry
+        statement: Fewer clicks turn into an enquiry.
+        metric: clicks_per_enquiry
+        test: {kind: rate_gap, numerator: enquiries, denominator: clicks, direction: lower, min_effect: 0.2}
+      - id: approval
+        statement: Fewer enquiries are approved.
+        metric: enquiries_per_approved
+        test: {kind: rate_gap, numerator: approved, denominator: enquiries, direction: lower, min_effect: 0.2}

@@ -187,10 +187,10 @@ def test_scan_input_validation():
         scan_segments(df, "grp", "A", "B", ["nope"], "num", "den")
     with pytest.raises(ValueError, match="baseline"):
         scan_segments(df, "grp", "Z", "B", ["age"], "num", "den")
-    bad = df.copy()
-    bad.loc[0, "num"] = bad.loc[0, "den"] + 5
-    with pytest.raises(ValueError, match="exceeds"):
-        scan_segments(bad, "grp", "A", "B", ["age"], "num", "den")
+    neg = df.copy()
+    neg.loc[0, "num"] = -1
+    with pytest.raises(ValueError, match="negative"):
+        scan_segments(neg, "grp", "A", "B", ["age"], "num", "den")
     with pytest.raises(ValueError, match="alpha"):
         scan_segments(df, "grp", "A", "B", ["age"], "num", "den", alpha=2)
 
@@ -218,3 +218,16 @@ def test_concentration_picks_the_fewest_segments_covering_the_share():
 def test_concentration_unknown_dimension_returns_nothing():
     scan = scan_segments(synthetic(), "grp", "A", "B", ["dev"], "num", "den")
     assert concentration(scan, "age") == []
+
+
+def test_segment_whose_numerator_exceeds_its_denominator_is_set_aside_not_fatal():
+    # conversions credited without a click can push a segment's numerator above its denominator
+    df = synthetic()
+    odd = pd.DataFrame(
+        [("A", "odd", "F", "x1", 700, 600), ("B", "odd", "F", "x1", 50, 600)], columns=df.columns
+    )
+    scan = scan_segments(pd.concat([df, odd]), "grp", "A", "B", ["age"], "num", "den",
+                         min_denominator=500)
+    assert "odd" not in {r.value for r in scan.rows}
+    assert any(e.value == "odd" and "exceeds" in e.reason for e in scan.excluded)
+    assert {r.value for r in scan.rows} == {"18-24", "25-34", "35-44"}

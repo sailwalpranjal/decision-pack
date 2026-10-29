@@ -1,0 +1,70 @@
+title: Why campaign 1178 costs four times as much per approved conversion as campaign 936
+metric:
+  name: cost_per_approved
+  label: Cost per approved conversion
+  numerator: Spent
+  denominator: Approved_Conversion
+  unit: "$"
+  lower_is_better: true
+groups:
+  column: xyz_campaign_id
+  baseline: "936"
+  comparison: "1178"
+  baseline_label: Campaign 936
+  comparison_label: Campaign 1178
+bridge:
+  factors:
+    - {name: cost_per_impression, label: Media cost (spend per impression), numerator: Spent, denominator: Impressions}
+    - {name: impressions_per_click, label: Ad appeal (impressions needed per click), numerator: Impressions, denominator: Clicks}
+    - {name: clicks_per_enquiry, label: Click to enquiry (clicks needed per enquiry), numerator: Clicks, denominator: Total_Conversion}
+    - {name: enquiries_per_approved, label: Enquiry to approval (enquiries needed per approval), numerator: Total_Conversion, denominator: Approved_Conversion}
+measures:
+  clicks: sum(Clicks)
+  enquiries: sum(Total_Conversion)
+  approved: sum(Approved_Conversion)
+  clicks_per_approved: sum(Clicks) / sum(Approved_Conversion)
+segments:
+  dimensions: [age, gender, interest]
+  numerator: Approved_Conversion
+  denominator: Clicks
+  label: click-to-approved rate
+  min_denominator: 200
+  alpha: 0.05
+  correction: bh
+  simpson_stratifiers: [age, gender]
+tree_file: tree.yaml
+data_notes:
+  - Public, anonymised ad-set data (Kaggle "Sales Conversion Optimization"), 1,143 ad sets across three campaigns. Each row is one ad set.
+  - The campaigns did not run as a concurrent split test, so this is an observational comparison.
+  - Revenue is not in the data, so CAC and ROAS are not computed.
+recommendations:
+  - id: R1
+    title: Test a shorter enquiry form on the campaign 1178 landing page
+    rationale: Most clicks never become an enquiry, and that stage carries the largest part of the cost gap.
+    impact_formula: clicks * lift * approval_rate
+    impact_unit: extra approved conversions over the same period
+    assumptions:
+      - {name: clicks, low: 36068, base: 36068, high: 36068, source: "Campaign 1178 clicks in the dataset"}
+      - {name: lift, low: 0.005, base: 0.015, high: 0.03, source: "My judgement, no test has been run; absolute rise in the click-to-enquiry rate"}
+      - {name: approval_rate, low: 0.28, base: 0.327, high: 0.36, source: "Approved per enquiry in campaign 1178 (about 32.7%); range is my judgement"}
+    scoring: {method: ice, impact: 8, confidence: 5, ease: 6}
+  - id: R2
+    title: Check the ad promise against the landing page before scaling spend further
+    rationale: Campaign 1178 spent 19 times as much and the post-click funnel did not keep up.
+    impact_formula: spend * improvement / cost_per_approved
+    impact_unit: extra approved conversions over the same period
+    assumptions:
+      - {name: spend, low: 55662, base: 55662, high: 55662, source: "Campaign 1178 spend in the dataset"}
+      - {name: improvement, low: 0.02, base: 0.08, high: 0.15, source: "My judgement; share of cost per approved conversion removed"}
+      - {name: cost_per_approved, low: 63.83, base: 63.83, high: 63.83, source: "Campaign 1178 in the dataset"}
+    scoring: {method: ice, impact: 7, confidence: 4, ease: 6}
+  - id: R3
+    title: Run a landing-page test for the female audience, which clicks more but converts less
+    rationale: Across all three campaigns, female ad sets have a higher click rate than male ones (0.0208% against 0.0145%) but a higher cost per approved conversion ($69.70 against $41.44). That pattern is observational and the cause is unknown, which is why this is a test and not a rollout.
+    impact_formula: clicks * share * lift
+    impact_unit: extra approved conversions over the same period
+    assumptions:
+      - {name: clicks, low: 36068, base: 36068, high: 36068, source: "Campaign 1178 clicks in the dataset"}
+      - {name: share, low: 0.5, base: 0.615, high: 0.7, source: "Female share of campaign 1178 clicks in the dataset (61.5%); range is my judgement"}
+      - {name: lift, low: 0.0, base: 0.004, high: 0.01, source: "My judgement; absolute rise in click-to-approved rate for that audience"}
+    scoring: {method: ice, impact: 5, confidence: 3, ease: 7}

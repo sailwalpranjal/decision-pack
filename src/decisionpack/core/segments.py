@@ -105,8 +105,6 @@ def _validate_frame(
         raise ValueError(
             f"comparison {comparison!r} not found in {group_col!r}; found {sorted(groups)}"
         )
-    if (df[num_col] > df[den_col]).any():
-        raise ValueError(f"{num_col!r} exceeds {den_col!r} in at least one row")
     if (df[den_col] < 0).any() or (df[num_col] < 0).any():
         raise ValueError("counts must not be negative")
 
@@ -170,6 +168,11 @@ def scan_segments(
                         f"below the minimum denominator of {min_denominator:g} "
                         f"(A={den_a:g}, B={den_b:g})",
                     )
+                )
+                continue
+            if num_a > den_a or num_b > den_b:
+                excluded.append(
+                    Excluded(dim, value, "numerator exceeds denominator, so it is not a rate")
                 )
                 continue
             r_a, r_b = num_a / den_a, num_b / den_b

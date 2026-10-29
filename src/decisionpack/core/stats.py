@@ -131,6 +131,23 @@ def bootstrap_ci(
     return float(lo), float(hi)
 
 
+def _into_blocks(
+    num: NDArray[np.float64], den: NDArray[np.float64], k: int, rng: np.random.Generator
+) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
+    """Add rows into ``k`` random blocks so a huge sample can be bootstrapped cheaply."""
+    assignment = rng.integers(0, k, size=num.size)
+    return (
+        np.bincount(assignment, weights=num, minlength=k),
+        np.bincount(assignment, weights=den, minlength=k),
+    )
+
+
+def _resampled_ratio(
+    num: NDArray[np.float64], den: NDArray[np.float64], idx: NDArray[np.int64]
+) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
+    return num[idx].sum(axis=1), den[idx].sum(axis=1)
+
+
 def bootstrap_ratio_gap_ci(
     num_a: ArrayLike,
     den_a: ArrayLike,
@@ -140,12 +157,16 @@ def bootstrap_ratio_gap_ci(
     n_boot: int = 2000,
     conf: float = 0.95,
     seed: int | None = 0,
+    max_rows: int = 20_000,
+    n_blocks: int = 2_000,
 ) -> tuple[float, float, float]:
     """Gap in a ratio of sums, group B minus group A, with a percentile bootstrap interval.
 
     Each input is one value per row (ad set, customer, ...). Rows are resampled within their
     group, which respects that the rows, not the individual events, are the units that vary.
-    Returns ``(gap, low, high)``.
+    A group with more than ``max_rows`` rows is first added into ``n_blocks`` random blocks and
+    the blocks are resampled; for independent rows that gives nearly the same interval at a
+    fraction of the cost. Returns ``(gap, low, high)``; the gap is always from the full data.
     """
     na, da = np.asarray(num_a, float), np.asarray(den_a, float)
     nb, db = np.asarray(num_b, float), np.asarray(den_b, float)
@@ -160,13 +181,27 @@ def bootstrap_ratio_gap_ci(
     _check_conf(conf)
 
     rng = np.random.default_rng(seed)
-    ia = rng.integers(0, na.size, size=(n_boot, na.size))
-    ib = rng.integers(0, nb.size, size=(n_boot, nb.size))
-    den_a_s, den_b_s = da[ia].sum(axis=1), db[ib].sum(axis=1)
-    ok = (den_a_s > 0) & (den_b_s > 0)
-    gaps = nb[ib].sum(axis=1)[ok] / den_b_s[ok] - na[ia].sum(axis=1)[ok] / den_a_s[ok]
-    lo, hi = np.quantile(gaps, [(1 - conf) / 2, 1 - (1 - conf) / 2])
-    return float(nb.sum() / db.sum() - na.sum() / da.sum()), float(lo), float(hi)
+    point = float(nb.sum() / db.sum() - na.sum() / da.sum())
+    if na.size > max_rows:
+        na, da = _into_blocks(na, da, n_blocks, rng)
+    if nb.size > max_rows:
+        nb, db = _into_blocks(nb, db, n_blocks, rng)
+
+    chunk = max(1, int(8_000_000 // max(na.size, nb.size)))
+    gaps: list[NDArray[np.float64]] = []
+    done = 0
+    while done < n_boot:
+        m = min(chunk, n_boot - done)
+        ia = rng.integers(0, na.size, size=(m, na.size))
+        ib = rng.integers(0, nb.size, size=(m, nb.size))
+        sn_a, sd_a = _resampled_ratio(na, da, ia)
+        sn_b, sd_b = _resampled_ratio(nb, db, ib)
+        ok = (sd_a > 0) & (sd_b > 0)
+        gaps.append(sn_b[ok] / sd_b[ok] - sn_a[ok] / sd_a[ok])
+        done += m
+    all_gaps = np.concatenate(gaps)
+    lo, hi = np.quantile(all_gaps, [(1 - conf) / 2, 1 - (1 - conf) / 2])
+    return point, float(lo), float(hi)
 
 
 # ---- power and sample size ----------------------------------------------------------------
