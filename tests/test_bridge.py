@@ -28,8 +28,8 @@ def scale(base, comp) -> float:
 def factor_dicts(n: int):
     names = [f"f{i}" for i in range(n)]
     return st.tuples(
-        st.fixed_dictionaries({k: positive for k in names}),
-        st.fixed_dictionaries({k: positive for k in names}),
+        st.fixed_dictionaries(dict.fromkeys(names, positive)),
+        st.fixed_dictionaries(dict.fromkeys(names, positive)),
     )
 
 
@@ -234,13 +234,19 @@ def test_funnel_lab_regression(funnel_df: pd.DataFrame):
     assert math.prod(comp.values()) == pytest.approx(63.83, abs=0.005)
     assert seq.total_gap == pytest.approx(48.02, abs=0.005)
     vals = list(seq.attributions.values())
-    assert vals == [pytest.approx(-3.74, abs=0.005), pytest.approx(4.66, abs=0.005),
-                    pytest.approx(47.10, abs=0.005)]
+    assert vals == [
+        pytest.approx(-3.74, abs=0.005),
+        pytest.approx(4.66, abs=0.005),
+        pytest.approx(47.10, abs=0.005),
+    ]
 
     sh = shapley_bridge(base, comp)
     svals = list(sh.attributions.values())
-    assert svals == [pytest.approx(-11.08, abs=0.005), pytest.approx(12.62, abs=0.005),
-                     pytest.approx(46.48, abs=0.005)]
+    assert svals == [
+        pytest.approx(-11.08, abs=0.005),
+        pytest.approx(12.62, abs=0.005),
+        pytest.approx(46.48, abs=0.005),
+    ]
     assert sum(svals) == pytest.approx(48.02, abs=0.005)
     assert sh.shares()["clicks_per_approved"] == pytest.approx(0.968, abs=0.0005)
     assert seq.shares()["clicks_per_approved"] == pytest.approx(0.981, abs=0.0005)

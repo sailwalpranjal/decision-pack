@@ -66,6 +66,12 @@ files = ["src/decisionpack"]
 module = ["scipy.*", "pptx.*", "statsmodels.*"]
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+# python-pptx ships no type information, so calls into it are untyped by construction.
+module = ["decisionpack.report.deck"]
+disallow_untyped_calls = false
+disallow_any_unimported = false
+
 [tool.coverage.run]
 source = ["src/decisionpack"]
 branch = true

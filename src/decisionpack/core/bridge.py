@@ -54,7 +54,7 @@ class Bridge:
     def shares(self) -> dict[str, float]:
         gap = self.total_gap
         if gap == 0:
-            return {k: math.nan for k in self.attributions}
+            return dict.fromkeys(self.attributions, math.nan)
         return {k: v / gap for k, v in self.attributions.items()}
 
 

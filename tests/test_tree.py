@@ -100,7 +100,8 @@ def test_share_of_gap_marks_supported_and_refuted_from_shapley_shares():
 
 
 def test_node_without_a_test_is_untested():
-    t = parse_tree(yaml.safe_load("""
+    t = parse_tree(
+        yaml.safe_load("""
 id: gap
 statement: s
 metric: cost
@@ -108,7 +109,8 @@ combine: product
 children:
   - {id: media, statement: m, metric: cpm}
   - {id: post_click, statement: p, metric: conv}
-"""))
+""")
+    )
     res = {r.node_id: r.status for r in evaluate_tree(t, VALUES_A, VALUES_B)}
     assert res == {"gap": "untested", "media": "untested", "post_click": "untested"}
 
@@ -183,22 +185,42 @@ def test_combine_without_metric_or_children_rejected():
     with pytest.raises(TreeError, match="children"):
         parse_tree({"id": "a", "statement": "s", "metric": "m", "combine": "product"})
     with pytest.raises(TreeError, match="metric"):
-        parse_tree({"id": "a", "statement": "s", "combine": "product",
-                    "children": [{"id": "b", "statement": "t", "metric": "x"}]})
+        parse_tree(
+            {
+                "id": "a",
+                "statement": "s",
+                "combine": "product",
+                "children": [{"id": "b", "statement": "t", "metric": "x"}],
+            }
+        )
 
 
 def test_unknown_combine_and_test_kind_rejected():
     with pytest.raises(TreeError, match="combine"):
-        parse_tree({"id": "a", "statement": "s", "metric": "m", "combine": "magic",
-                    "children": [{"id": "b", "statement": "t", "metric": "x"}]})
+        parse_tree(
+            {
+                "id": "a",
+                "statement": "s",
+                "metric": "m",
+                "combine": "magic",
+                "children": [{"id": "b", "statement": "t", "metric": "x"}],
+            }
+        )
     with pytest.raises(TreeError, match="kind"):
         parse_tree({"id": "a", "statement": "s", "test": {"kind": "vibes"}})
 
 
 def test_ratio_needs_exactly_two_children():
     with pytest.raises(TreeError, match="exactly two"):
-        parse_tree({"id": "a", "statement": "s", "metric": "m", "combine": "ratio",
-                    "children": [{"id": "b", "statement": "t", "metric": "x"}]})
+        parse_tree(
+            {
+                "id": "a",
+                "statement": "s",
+                "metric": "m",
+                "combine": "ratio",
+                "children": [{"id": "b", "statement": "t", "metric": "x"}],
+            }
+        )
 
 
 def test_load_tree_from_yaml_text_and_bad_yaml(tmp_path):

@@ -144,8 +144,11 @@ def size(rec: Recommendation) -> SizedRecommendation:
 
     warnings: list[str] = []
     try:
-        used = {n.id for n in ast.walk(ast.parse(rec.impact_formula, mode="eval"))
-                if isinstance(n, ast.Name)}
+        used = {
+            n.id
+            for n in ast.walk(ast.parse(rec.impact_formula, mode="eval"))
+            if isinstance(n, ast.Name)
+        }
     except SyntaxError:
         used = set()  # evaluate() below reports the syntax error with a clear message
     for name in base_values:
@@ -184,8 +187,15 @@ def rank(sized: list[SizedRecommendation]) -> list[SizedRecommendation]:
     ordered = sorted(sized, key=lambda s: (-s.score, -s.base, s.recommendation.id))
     return [
         SizedRecommendation(
-            s.recommendation, s.low, s.base, s.high, s.sensitivity, s.score, s.arithmetic,
-            s.warnings, i,
+            s.recommendation,
+            s.low,
+            s.base,
+            s.high,
+            s.sensitivity,
+            s.score,
+            s.arithmetic,
+            s.warnings,
+            i,
         )
         for i, s in enumerate(ordered, start=1)
     ]

@@ -138,8 +138,7 @@ def test_bootstrap_ci_close_to_scipy():
     rng = np.random.default_rng(2)
     data = rng.exponential(2.0, size=300)
     lo, hi = ds.bootstrap_ci(data, np.median, n_boot=4000, seed=3)
-    res = sps.bootstrap((data,), np.median, n_resamples=4000, method="percentile",
-                        random_state=3)
+    res = sps.bootstrap((data,), np.median, n_resamples=4000, method="percentile", random_state=3)
     assert lo == pytest.approx(res.confidence_interval.low, abs=0.15)
     assert hi == pytest.approx(res.confidence_interval.high, abs=0.15)
 
@@ -181,11 +180,13 @@ def test_bootstrap_ratio_gap_ci_contains_point_estimate_and_narrows_with_data():
 
 def test_bootstrap_ratio_gap_validation():
     with pytest.raises(ValueError):
-        ds.bootstrap_ratio_gap_ci(np.array([1.0]), np.array([1.0, 2.0]), np.array([1.0]),
-                                  np.array([1.0]))
+        ds.bootstrap_ratio_gap_ci(
+            np.array([1.0]), np.array([1.0, 2.0]), np.array([1.0]), np.array([1.0])
+        )
     with pytest.raises(ValueError):
-        ds.bootstrap_ratio_gap_ci(np.array([1.0]), np.array([0.0]), np.array([1.0]),
-                                  np.array([1.0]))
+        ds.bootstrap_ratio_gap_ci(
+            np.array([1.0]), np.array([0.0]), np.array([1.0]), np.array([1.0])
+        )
 
 
 # ---- power and sample size ----------------------------------------------------------------
@@ -203,8 +204,9 @@ def test_arcsine_sample_size_matches_statsmodels(p1, p2, power):
 @pytest.mark.parametrize("p1,p2,n", [(0.10, 0.12, 3000), (0.05, 0.08, 800), (0.30, 0.35, 1500)])
 def test_arcsine_power_matches_statsmodels(p1, p2, n):
     mine = ds.power_two_proportions(p1, p2, n, alpha=0.05, method="arcsine")
-    theirs = NormalIndPower().power(effect_size=proportion_effectsize(p2, p1), nobs1=n,
-                                    alpha=0.05, ratio=1.0)
+    theirs = NormalIndPower().power(
+        effect_size=proportion_effectsize(p2, p1), nobs1=n, alpha=0.05, ratio=1.0
+    )
     assert mine == pytest.approx(theirs, rel=1e-9, abs=1e-12)
 
 

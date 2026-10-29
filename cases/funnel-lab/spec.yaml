@@ -14,10 +14,10 @@ groups:
   comparison_label: Campaign 1178
 bridge:
   factors:
-    - {name: cost_per_impression, label: Media cost (spend per impression), numerator: Spent, denominator: Impressions}
-    - {name: impressions_per_click, label: Ad appeal (impressions needed per click), numerator: Impressions, denominator: Clicks}
-    - {name: clicks_per_enquiry, label: Click to enquiry (clicks needed per enquiry), numerator: Clicks, denominator: Total_Conversion}
-    - {name: enquiries_per_approved, label: Enquiry to approval (enquiries needed per approval), numerator: Total_Conversion, denominator: Approved_Conversion}
+    - {name: cost_per_impression, label: Media cost, description: spend per impression, numerator: Spent, denominator: Impressions}
+    - {name: impressions_per_click, label: Ad appeal, description: impressions needed per click, numerator: Impressions, denominator: Clicks}
+    - {name: clicks_per_enquiry, label: Click to enquiry, description: clicks needed per enquiry, numerator: Clicks, denominator: Total_Conversion}
+    - {name: enquiries_per_approved, label: Enquiry to approval, description: enquiries needed per approval, numerator: Total_Conversion, denominator: Approved_Conversion}
 measures:
   clicks: sum(Clicks)
   enquiries: sum(Total_Conversion)

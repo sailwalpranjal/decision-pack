@@ -143,8 +143,10 @@ def run_analysis(spec: Spec, df: pd.DataFrame, base_dir: Path | None = None) -> 
         f.name: _ratio_of_sums(b, f.numerator, f.denominator, f"factor {f.name}")
         for f in spec.bridge.factors
     }
-    for label, factors, metric in (("baseline", factors_a, metric_a),
-                                   ("comparison", factors_b, metric_b)):
+    for label, factors, metric in (
+        ("baseline", factors_a, metric_a),
+        ("comparison", factors_b, metric_b),
+    ):
         rebuilt = math.prod(factors.values())
         if not math.isclose(rebuilt, metric, rel_tol=1e-6, abs_tol=1e-12):
             raise AnalysisError(
@@ -158,9 +160,12 @@ def run_analysis(spec: Spec, df: pd.DataFrame, base_dir: Path | None = None) -> 
     sensitivity = order_sensitivity(factors_a, factors_b) if len(factors_a) <= 8 else None
 
     point, lo, hi = bootstrap_ratio_gap_ci(
-        _row_values(a, m.numerator), _row_values(a, m.denominator),
-        _row_values(b, m.numerator), _row_values(b, m.denominator),
-        n_boot=spec.n_boot, seed=spec.seed,
+        _row_values(a, m.numerator),
+        _row_values(a, m.denominator),
+        _row_values(b, m.numerator),
+        _row_values(b, m.denominator),
+        n_boot=spec.n_boot,
+        seed=spec.seed,
     )
     del point
 
@@ -220,8 +225,12 @@ def _run_segments(spec: Spec, frame: pd.DataFrame, result: AnalysisResult) -> No
     in_a = work[work[spec.groups.column] == spec.groups.baseline]
     in_b = work[work[spec.groups.column] == spec.groups.comparison]
     result.scan_gap_ci = bootstrap_ratio_gap_ci(
-        in_a["__num"], in_a["__den"], in_b["__num"], in_b["__den"],
-        n_boot=spec.n_boot, seed=spec.seed,
+        in_a["__num"],
+        in_a["__den"],
+        in_b["__num"],
+        in_b["__den"],
+        n_boot=spec.n_boot,
+        seed=spec.seed,
     )
     n_tested = result.scan.family_size
     result.warnings.append(
@@ -236,15 +245,17 @@ def _run_segments(spec: Spec, frame: pd.DataFrame, result: AnalysisResult) -> No
 
 def _tree_values(spec: Spec, df: pd.DataFrame, factors: Mapping[str, float]) -> dict[str, float]:
     values = dict(factors)
-    values[spec.metric.name] = _ratio_of_sums(df, spec.metric.numerator, spec.metric.denominator,
-                                              "metric")
+    values[spec.metric.name] = _ratio_of_sums(
+        df, spec.metric.numerator, spec.metric.denominator, "metric"
+    )
     for name, expression in spec.measures.items():
         values[name] = float(evaluate(expression, _column_namespace(df)))
     return values
 
 
-def _run_tree(spec: Spec, a: pd.DataFrame, b: pd.DataFrame, result: AnalysisResult,
-              base_dir: Path | None) -> None:
+def _run_tree(
+    spec: Spec, a: pd.DataFrame, b: pd.DataFrame, result: AnalysisResult, base_dir: Path | None
+) -> None:
     if spec.tree is not None:
         tree = parse_tree(spec.tree)
     elif spec.tree_file is not None:

@@ -104,16 +104,16 @@ def _eval(node: ast.AST, ns: Mapping[str, Any]) -> Any:
         return result
     if isinstance(node, ast.Compare):
         left = _eval(node.left, ns)
-        result: Any = None
+        combined: Any = None
         for op_node, comparator in zip(node.ops, node.comparators, strict=True):
             cmp = _CMPOPS.get(type(op_node))
             if cmp is None:
                 raise ExpressionError(f"comparison {type(op_node).__name__} is not allowed")
             right = _eval(comparator, ns)
             piece = cmp(left, right)
-            result = piece if result is None else np.logical_and(result, piece)
+            combined = piece if combined is None else np.logical_and(combined, piece)
             left = right
-        return result
+        return combined
     if isinstance(node, ast.Call):
         if not isinstance(node.func, ast.Name) or node.func.id not in FUNCTIONS:
             raise ExpressionError(f"only these functions are allowed: {', '.join(FUNCTIONS)}")

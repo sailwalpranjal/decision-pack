@@ -83,10 +83,17 @@ def test_rice_arithmetic_is_shown():
 def test_ranking_orders_by_score_then_by_base_impact():
     a = size(rec(id="A", scoring=Scoring(method="ice", impact=5, confidence=5, ease=5)))
     b = size(rec(id="B", scoring=Scoring(method="ice", impact=9, confidence=7, ease=8)))
-    c = size(rec(id="C", scoring=Scoring(method="ice", impact=5, confidence=5, ease=5),
-                 assumptions=(Assumption("clicks", 1, 2, 3, "x"),
-                              Assumption("lift", 1, 2, 3, "x"),
-                              Assumption("value", 1, 2, 3, "x"))))
+    c = size(
+        rec(
+            id="C",
+            scoring=Scoring(method="ice", impact=5, confidence=5, ease=5),
+            assumptions=(
+                Assumption("clicks", 1, 2, 3, "x"),
+                Assumption("lift", 1, 2, 3, "x"),
+                Assumption("value", 1, 2, 3, "x"),
+            ),
+        )
+    )
     ranked = rank([a, c, b])
     assert [r.recommendation.id for r in ranked] == ["B", "A", "C"]
     assert [r.rank for r in ranked] == [1, 2, 3]
@@ -102,22 +109,38 @@ def test_recommendation_without_assumptions_is_rejected():
 
 def test_assumption_must_be_ordered():
     with pytest.raises(MissingUncertaintyError, match="low <= base <= high"):
-        size(rec(assumptions=(Assumption("clicks", 5, 4, 6, "x"),
-                              Assumption("lift", 0.01, 0.02, 0.03, "x"),
-                              Assumption("value", 1, 1, 1, "x"))))
+        size(
+            rec(
+                assumptions=(
+                    Assumption("clicks", 5, 4, 6, "x"),
+                    Assumption("lift", 0.01, 0.02, 0.03, "x"),
+                    Assumption("value", 1, 1, 1, "x"),
+                )
+            )
+        )
 
 
 def test_assumption_needs_a_source():
     with pytest.raises(MissingUncertaintyError, match="source"):
-        size(rec(assumptions=(Assumption("clicks", 1, 2, 3, "  "),
-                              Assumption("lift", 0.01, 0.02, 0.03, "x"),
-                              Assumption("value", 1, 1, 1, "x"))))
+        size(
+            rec(
+                assumptions=(
+                    Assumption("clicks", 1, 2, 3, "  "),
+                    Assumption("lift", 0.01, 0.02, 0.03, "x"),
+                    Assumption("value", 1, 1, 1, "x"),
+                )
+            )
+        )
 
 
 def test_a_point_estimate_masquerading_as_a_range_is_flagged_as_a_warning():
-    r = rec(assumptions=(Assumption("clicks", 36_000, 36_000, 36_000, "export"),
-                         Assumption("lift", 0.02, 0.02, 0.02, "guess"),
-                         Assumption("value", 1, 1, 1, "x")))
+    r = rec(
+        assumptions=(
+            Assumption("clicks", 36_000, 36_000, 36_000, "export"),
+            Assumption("lift", 0.02, 0.02, 0.02, "guess"),
+            Assumption("value", 1, 1, 1, "x"),
+        )
+    )
     s = size(r)
     assert s.low == s.base == s.high
     assert any("no spread" in w for w in s.warnings)
@@ -135,9 +158,16 @@ def test_unused_assumption_is_a_warning_not_an_error():
 
 def test_duplicate_assumption_names_rejected():
     with pytest.raises(MissingUncertaintyError, match="duplicate"):
-        size(rec(assumptions=(Assumption("clicks", 1, 2, 3, "x"), Assumption("clicks", 1, 2, 3, "x"),
-                              Assumption("lift", 0.01, 0.02, 0.03, "x"),
-                              Assumption("value", 1, 1, 1, "x"))))
+        size(
+            rec(
+                assumptions=(
+                    Assumption("clicks", 1, 2, 3, "x"),
+                    Assumption("clicks", 1, 2, 3, "x"),
+                    Assumption("lift", 0.01, 0.02, 0.03, "x"),
+                    Assumption("value", 1, 1, 1, "x"),
+                )
+            )
+        )
 
 
 def test_scoring_validation():
@@ -153,7 +183,10 @@ def test_scoring_validation():
 
 @settings(max_examples=100, deadline=None)
 @given(
-    st.floats(1, 1e4), st.floats(0, 1), st.floats(0, 1), st.floats(0, 1),
+    st.floats(1, 1e4),
+    st.floats(0, 1),
+    st.floats(0, 1),
+    st.floats(0, 1),
 )
 def test_property_low_base_high_ordered_for_monotone_formulas(volume, a, b, c):
     lo_mid_hi = sorted([a, b, c])

@@ -23,6 +23,8 @@ SIMPSON = make_frame(
         ("B", "hard", 55, 80),  # 68.8%  <- lower than A inside "hard"
     ]
 )
+
+
 def reversal_frame() -> pd.DataFrame:
     # A: easy 0.90 (n=1000), hard 0.20 (n=200)   -> overall 0.7500
     # B: easy 0.95 (n=100),  hard 0.30 (n=1000)  -> overall 0.3636
@@ -94,8 +96,17 @@ def synthetic(seed: int = 2) -> pd.DataFrame:
 
 
 def test_scan_finds_the_planted_segment_and_not_noise():
-    scan = scan_segments(synthetic(), "grp", "A", "B", ["age", "sex", "dev"], "num", "den",
-                         min_denominator=500, alpha=0.05)
+    scan = scan_segments(
+        synthetic(),
+        "grp",
+        "A",
+        "B",
+        ["age", "sex", "dev"],
+        "num",
+        "den",
+        min_denominator=500,
+        alpha=0.05,
+    )
     by_dev = {r.value: r for r in scan.rows if r.dimension == "dev"}
     assert by_dev["x1"].significant
     assert not by_dev["x2"].significant and not by_dev["x3"].significant
@@ -111,8 +122,9 @@ def test_scan_finds_the_planted_segment_and_not_noise():
 
 
 def test_scan_contributions_sum_to_the_gap_within_each_dimension():
-    scan = scan_segments(synthetic(), "grp", "A", "B", ["age", "dev"], "num", "den",
-                         min_denominator=1)
+    scan = scan_segments(
+        synthetic(), "grp", "A", "B", ["age", "dev"], "num", "den", min_denominator=1
+    )
     for dim in ("age", "dev"):
         rows = [r for r in scan.rows if r.dimension == dim]
         assert sum(r.contribution for r in rows) == pytest.approx(scan.gap, abs=1e-12)
@@ -131,10 +143,12 @@ def test_scan_overall_rates_are_ratios_of_sums():
 
 def test_minimum_size_rule_excludes_and_explains():
     df = synthetic()
-    tiny = pd.DataFrame([("A", "tiny", "F", "x1", 1, 20), ("B", "tiny", "F", "x1", 5, 20)],
-                        columns=df.columns)
-    scan = scan_segments(pd.concat([df, tiny]), "grp", "A", "B", ["age"], "num", "den",
-                         min_denominator=500)
+    tiny = pd.DataFrame(
+        [("A", "tiny", "F", "x1", 1, 20), ("B", "tiny", "F", "x1", 5, 20)], columns=df.columns
+    )
+    scan = scan_segments(
+        pd.concat([df, tiny]), "grp", "A", "B", ["age"], "num", "den", min_denominator=500
+    )
     assert "tiny" not in {r.value for r in scan.rows}
     reasons = {(e.dimension, e.value): e.reason for e in scan.excluded}
     assert ("age", "tiny") in reasons and "below the minimum" in reasons[("age", "tiny")]
@@ -143,15 +157,17 @@ def test_minimum_size_rule_excludes_and_explains():
 def test_segment_missing_from_one_group_is_excluded():
     df = synthetic()
     only_b = pd.DataFrame([("B", "65+", "F", "x1", 50, 1000)], columns=df.columns)
-    scan = scan_segments(pd.concat([df, only_b]), "grp", "A", "B", ["age"], "num", "den",
-                         min_denominator=100)
+    scan = scan_segments(
+        pd.concat([df, only_b]), "grp", "A", "B", ["age"], "num", "den", min_denominator=100
+    )
     assert "65+" not in {r.value for r in scan.rows}
     assert any(e.value == "65+" and "one group" in e.reason for e in scan.excluded)
 
 
 def test_multiple_comparison_adjustment_is_applied_across_the_whole_family():
-    scan = scan_segments(synthetic(), "grp", "A", "B", ["age", "sex", "dev"], "num", "den",
-                         min_denominator=500)
+    scan = scan_segments(
+        synthetic(), "grp", "A", "B", ["age", "sex", "dev"], "num", "den", min_denominator=500
+    )
     assert scan.family_size == len(scan.rows) == 8
     assert all(r.p_holm >= r.p_value - 1e-12 for r in scan.rows)
     assert all(r.p_bh <= r.p_holm + 1e-12 for r in scan.rows)
@@ -176,8 +192,9 @@ def test_pure_noise_produces_few_false_discoveries():
 
 def test_scan_reports_simpson_when_a_stratifier_is_given():
     df = reversal_frame()
-    scan = scan_segments(df, "grp", "A", "B", ["seg"], "num", "den", min_denominator=10,
-                         simpson_stratifiers=["seg"])
+    scan = scan_segments(
+        df, "grp", "A", "B", ["seg"], "num", "den", min_denominator=10, simpson_stratifiers=["seg"]
+    )
     assert scan.simpson and scan.simpson[0].reversed
 
 
@@ -206,8 +223,7 @@ def test_missing_dimension_values_are_dropped_with_a_note():
 
 
 def test_concentration_picks_the_fewest_segments_covering_the_share():
-    scan = scan_segments(synthetic(), "grp", "A", "B", ["dev"], "num", "den",
-                         min_denominator=1)
+    scan = scan_segments(synthetic(), "grp", "A", "B", ["dev"], "num", "den", min_denominator=1)
     rows = concentration(scan, "dev", share=0.8)
     assert rows[0].value == "x1"
     covered = sum(abs(r.contribution) for r in rows)
@@ -226,8 +242,9 @@ def test_segment_whose_numerator_exceeds_its_denominator_is_set_aside_not_fatal(
     odd = pd.DataFrame(
         [("A", "odd", "F", "x1", 700, 600), ("B", "odd", "F", "x1", 50, 600)], columns=df.columns
     )
-    scan = scan_segments(pd.concat([df, odd]), "grp", "A", "B", ["age"], "num", "den",
-                         min_denominator=500)
+    scan = scan_segments(
+        pd.concat([df, odd]), "grp", "A", "B", ["age"], "num", "den", min_denominator=500
+    )
     assert "odd" not in {r.value for r in scan.rows}
     assert any(e.value == "odd" and "exceeds" in e.reason for e in scan.excluded)
     assert {r.value for r in scan.rows} == {"18-24", "25-34", "35-44"}

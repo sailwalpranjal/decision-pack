@@ -108,9 +108,8 @@ def _parse(data: Any, seen: _Seen) -> TreeNode:
                 raise TreeError(f"node {child.id!r}: needs a metric because its parent combines")
 
     test = data.get("test")
-    if test is not None:
-        if not isinstance(test, Mapping) or test.get("kind") not in TEST_KINDS:
-            raise TreeError(f"node {node_id!r}: test kind must be one of {TEST_KINDS}")
+    if test is not None and (not isinstance(test, Mapping) or test.get("kind") not in TEST_KINDS):
+        raise TreeError(f"node {node_id!r}: test kind must be one of {TEST_KINDS}")
     return TreeNode(
         id=node_id,
         statement=statement,
@@ -154,9 +153,7 @@ def validate_mece(
             needed = [node.metric, *(c.metric or "" for c in node.children)]
             missing = [m for m in needed if m not in values]
             if missing:
-                problems.append(
-                    MeceProblem(node.id, f"{label}: no value for {', '.join(missing)}")
-                )
+                problems.append(MeceProblem(node.id, f"{label}: no value for {', '.join(missing)}"))
                 continue
             parts = [values[c.metric or ""] for c in node.children]
             rebuilt = _combine(node.combine, parts)
@@ -251,7 +248,7 @@ def _rate_gap(node: TreeNode, a: Mapping[str, float], b: Mapping[str, float]) ->
         return _untested(node, f"direction must be lower or higher; got {direction!r}")
     alpha = float(node.test.get("alpha", 0.05))
     min_effect = float(node.test.get("min_effect", 0.2))
-    x1, n1, x2, n2 = (int(round(v)) for v in (a[num], a[den], b[num], b[den]))
+    x1, n1, x2, n2 = (round(v) for v in (a[num], a[den], b[num], b[den]))
     try:
         z = two_proportion_ztest(x1, n1, x2, n2)
     except ValueError as exc:
@@ -264,8 +261,9 @@ def _rate_gap(node: TreeNode, a: Mapping[str, float], b: Mapping[str, float]) ->
             f"rate {z.p1:.2%} -> {z.p2:.2%} (diff {z.diff:+.2%}, p = {z.p_value:.3g}); "
             f"the gap {verb} in the claimed direction ({direction})"
         )
-        return NodeResult(node.id, node.statement, "supported" if right_way else "refuted",
-                          detail, z.diff)
+        return NodeResult(
+            node.id, node.statement, "supported" if right_way else "refuted", detail, z.diff
+        )
 
     p1 = z.p1
     p2 = p1 * (1 - min_effect) if claimed_down else p1 * (1 + min_effect)

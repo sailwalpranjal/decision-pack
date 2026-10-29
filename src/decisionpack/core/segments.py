@@ -100,7 +100,9 @@ def _validate_frame(
             raise KeyError(f"column {col!r} not found; columns are {list(df.columns)}")
     groups = set(df[group_col].astype(str))
     if baseline not in groups:
-        raise ValueError(f"baseline {baseline!r} not found in {group_col!r}; found {sorted(groups)}")
+        raise ValueError(
+            f"baseline {baseline!r} not found in {group_col!r}; found {sorted(groups)}"
+        )
     if comparison not in groups:
         raise ValueError(
             f"comparison {comparison!r} not found in {group_col!r}; found {sorted(groups)}"
@@ -181,14 +183,31 @@ def scan_segments(
             rate_effect = wbar * (r_b - r_a)
             mix_effect = (w_b - w_a) * rbar
             try:
-                test = two_proportion_ztest(int(round(num_a)), int(round(den_a)),
-                                            int(round(num_b)), int(round(den_b)))
+                test = two_proportion_ztest(round(num_a), round(den_a), round(num_b), round(den_b))
                 z, p, lo, hi = test.statistic, test.p_value, test.ci_low, test.ci_high
             except ValueError:  # both groups all-success or all-failure: no evidence of a gap
                 z, p, lo, hi = 0.0, 1.0, 0.0, 0.0
             rows.append(
-                SegmentRow(dim, value, num_a, den_a, num_b, den_b, r_a, r_b, r_b - r_a, lo, hi,
-                           w_a, w_b, rate_effect, mix_effect, rate_effect + mix_effect, z, p)
+                SegmentRow(
+                    dim,
+                    value,
+                    num_a,
+                    den_a,
+                    num_b,
+                    den_b,
+                    r_a,
+                    r_b,
+                    r_b - r_a,
+                    lo,
+                    hi,
+                    w_a,
+                    w_b,
+                    rate_effect,
+                    mix_effect,
+                    rate_effect + mix_effect,
+                    z,
+                    p,
+                )
             )
 
     p_values = [r.p_value for r in rows]
@@ -202,12 +221,32 @@ def scan_segments(
     final.sort(key=lambda r: abs(r.contribution), reverse=True)
 
     simpson = [
-        simpson_check(df, group_col, baseline, comparison, s, num_col, den_col,
-                      min_denominator=min_denominator)
+        simpson_check(
+            df,
+            group_col,
+            baseline,
+            comparison,
+            s,
+            num_col,
+            den_col,
+            min_denominator=min_denominator,
+        )
         for s in simpson_stratifiers
     ]
-    return SegmentScan(group_col, baseline, comparison, rate_a, rate_b, rate_b - rate_a, alpha,
-                       correction, len(final), final, excluded, simpson)
+    return SegmentScan(
+        group_col,
+        baseline,
+        comparison,
+        rate_a,
+        rate_b,
+        rate_b - rate_a,
+        alpha,
+        correction,
+        len(final),
+        final,
+        excluded,
+        simpson,
+    )
 
 
 def simpson_check(

@@ -38,6 +38,7 @@ class FactorSpec(_Strict):
 
     name: str
     label: str | None = None
+    description: str | None = None
     numerator: str
     denominator: str
 

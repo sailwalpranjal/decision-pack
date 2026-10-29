@@ -84,8 +84,9 @@ def two_proportion_ztest(
 
     se_wald = math.sqrt(p1 * (1 - p1) / n1 + p2 * (1 - p2) / n2)
     crit = float(norm.ppf(1 - (1 - conf) / 2))
-    return ZTestResult(z, p_value, p1, p2, diff, diff - crit * se_wald, diff + crit * se_wald,
-                       alternative)
+    return ZTestResult(
+        z, p_value, p1, p2, diff, diff - crit * se_wald, diff + crit * se_wald, alternative
+    )
 
 
 def wilson_interval(x: int, n: int, conf: float = 0.95) -> tuple[float, float]:
