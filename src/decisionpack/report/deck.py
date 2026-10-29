@@ -356,10 +356,10 @@ def build_deck(result: AnalysisResult, path: str | Path) -> None:
             "Segment scan: two-proportion z-tests per segment, Holm and Benjamini-Hochberg "
             f"adjustment across all {result.scan.family_size if result.scan else 0} segments, "
             "minimum-size rule, mix and rate effects, Simpson's paradox check.",
-            "Hypothesis tree: children must reproduce the parent numerically (MECE check); nodes are "
-            "supported, refuted or untested from a stated test.",
-            "Sizing: low, base and high for every assumption, extremes over all corners, ICE or RICE "
-            "with the arithmetic shown.",
+            "Hypothesis tree: children must reproduce the parent numerically (MECE check); "
+            "nodes are supported, refuted or untested from a stated test.",
+            "Sizing: low, base and high for every assumption, extremes over all corners, "
+            "ICE or RICE with the arithmetic shown.",
             f"Uncertainty: bootstrap over rows ({spec.n_boot} resamples, seed {spec.seed}).",
         ],
         size=15,
