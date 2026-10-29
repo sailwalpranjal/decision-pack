@@ -13,7 +13,7 @@
 
 **Decision.** Shapley is the default; sequential is available, and reports show both side by side.
 
-**Consequences.** Results no longer depend on order. Cost is O(n!) orderings; for n up to about 8 factors that is fine, and above that the code uses the equivalent subset formula with 2^n terms. Shapley still depends on how the metric is factored, and that is stated in every report. The numbers are less familiar to readers, so the report explains them in one sentence.
+**Consequences.** Results no longer depend on order. The code uses the subset form of the Shapley value, which needs 2^n evaluations instead of n! orderings and is limited to 16 factors; the explicit average over orderings is kept as `shapley_by_permutations` so tests can check the two agree. Shapley still depends on how the metric is factored, and that is stated in every report. The numbers are less familiar to readers, so the report explains them in one sentence. An explicit `formula` lets the same machinery handle a metric that is a sum of products, not only a product.
 
 ## ADR-2: Hypothesis trees live in YAML
 
@@ -49,7 +49,7 @@
 
 **Decision.** python-pptx, with one slide per conclusion, a sentence as the title, a chart or table as the body, and a methods-and-limits appendix.
 
-**Consequences.** The file opens in PowerPoint, Keynote and Google Slides, and can be edited. python-pptx gives limited layout control, so the design is plain on purpose. Charts are embedded as images rendered from the SVGs. Slide titles are tested to be complete sentences (they end in a full stop and contain a verb-like word), which is a heuristic and not proof of good writing.
+**Consequences.** The file opens in PowerPoint, Keynote and Google Slides, and can be edited. python-pptx gives limited layout control, so the design is plain on purpose. python-pptx cannot embed SVG, so the waterfall is a native PowerPoint stacked-column chart (an invisible base series makes the floating bars), and falls back to a table if a running level goes below zero. The standalone SVG charts are written separately. Slide titles are tested to end in a full stop, be at least eight words and contain a verb from a list, which is a heuristic and not proof of good writing.
 
 ## ADR-5: Pure Python statistics with SciPy and statsmodels as test oracles
 
