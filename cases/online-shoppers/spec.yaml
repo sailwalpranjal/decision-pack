@@ -1,0 +1,83 @@
+title: New visitors buy far more often than returning visitors, and the difference is in what happens after a valued page
+metric:
+  name: purchase_rate
+  label: Purchase rate
+  numerator: purchased
+  denominator: sessions
+  unit: "%"
+  lower_is_better: false
+  decimals: 1
+groups:
+  column: VisitorType
+  baseline: Returning_Visitor
+  comparison: New_Visitor
+  baseline_label: Returning visitors
+  comparison_label: New visitors
+# 29 rows have no Revenue label; only labelled sessions are analysed.
+filter: Revenue == True or Revenue == False
+derived_columns:
+  sessions: "1"
+  purchased: where(Revenue == True, 1, 0)
+  valued: where(PageValues > 0, 1, 0)
+  valued_buy: valued * purchased
+  unvalued: 1 - valued
+  unvalued_buy: unvalued * purchased
+bridge:
+  # Purchase rate = P(reach a valued page) x P(buy | valued page) + P(no valued page) x P(buy | none).
+  # A sum of products, so the factors are combined with an explicit formula instead of a product.
+  formula: pv_rate * buy_given_valued + (1 - pv_rate) * buy_given_unvalued
+  factors:
+    - {name: pv_rate, label: Reaching a valued page, description: share of sessions that visit a page with a positive page value, numerator: valued, denominator: sessions}
+    - {name: buy_given_valued, label: Buying after a valued page, description: purchase rate among sessions that reached one, numerator: valued_buy, denominator: valued}
+    - {name: buy_given_unvalued, label: Buying without one, description: purchase rate among sessions that did not, numerator: unvalued_buy, denominator: unvalued}
+measures:
+  via_valued: sum(valued_buy) / sum(sessions)
+  via_other: sum(unvalued_buy) / sum(sessions)
+  valued_sessions: sum(valued)
+  valued_purchases: sum(valued_buy)
+  all_sessions: sum(sessions)
+segments:
+  dimensions: [Month, TrafficType, OperatingSystems, Browser, Region, Weekend]
+  numerator: purchased
+  denominator: sessions
+  label: purchase rate
+  min_denominator: 50
+  alpha: 0.05
+  correction: bh
+  simpson_stratifiers: [Month, Weekend]
+tree_file: tree.yaml
+data_notes:
+  - "UCI Machine Learning Repository, Online Shoppers Purchasing Intention Dataset (CC BY 4.0). One row is one browsing session; 12,330 sessions have a purchase label."
+  - "PageValues is the average value of the pages a session visited before a transaction. A positive value means the session reached a page that has led to purchases; it is not revenue."
+  - "Returning and new visitors differ in many ways besides how they behave on the site. This is an observational comparison."
+recommendations:
+  - id: R1
+    title: Find out why returning visitors who reach a valued page convert far less often than new visitors
+    rationale: Both groups reach a valued page at about the same rate (22%), but 86% of new visitors buy after one and 51% of returning visitors do. That is where the gap sits.
+    impact_formula: sessions * pv_rate * lift
+    impact_unit: extra purchases over the same period
+    assumptions:
+      - {name: sessions, low: 10551, base: 10551, high: 10551, source: "Returning-visitor sessions with a purchase label in the dataset"}
+      - {name: pv_rate, low: 0.221, base: 0.221, high: 0.221, source: "Share of returning sessions that reached a valued page, from the data"}
+      - {name: lift, low: 0.02, base: 0.06, high: 0.12, source: "My judgement, no test has been run; absolute rise in purchase rate among returning sessions that reach a valued page"}
+    scoring: {method: ice, impact: 8, confidence: 4, ease: 5}
+  - id: R2
+    title: Test a resume-checkout prompt for returning visitors on valued pages
+    rationale: A concrete intervention for recommendation 1. Whether the shortfall is a checkout problem is a hypothesis, not something this data shows.
+    impact_formula: sessions * pv_rate * lift
+    impact_unit: extra purchases over the same period
+    assumptions:
+      - {name: sessions, low: 10551, base: 10551, high: 10551, source: "Returning-visitor sessions in the dataset"}
+      - {name: pv_rate, low: 0.221, base: 0.221, high: 0.221, source: "Share of returning sessions that reached a valued page, from the data"}
+      - {name: lift, low: 0.0, base: 0.03, high: 0.08, source: "My judgement; absolute rise in purchase rate among those sessions"}
+    scoring: {method: ice, impact: 6, confidence: 3, ease: 7}
+  - id: R3
+    title: Repeat this comparison by traffic source, then act on the sources that differ
+    rationale: Traffic type is the dimension most likely to confound new versus returning, and the scan shows how much each source differs.
+    impact_formula: sessions * share * lift
+    impact_unit: extra purchases over the same period, if the follow-up finds something to act on
+    assumptions:
+      - {name: sessions, low: 10551, base: 10551, high: 10551, source: "Returning-visitor sessions in the dataset"}
+      - {name: share, low: 0.1, base: 0.3, high: 0.5, source: "My judgement; share of returning sessions that come from the sources that turn out to matter"}
+      - {name: lift, low: 0.0, base: 0.02, high: 0.05, source: "My judgement; purchase-rate rise from acting on what the analysis finds"}
+    scoring: {method: ice, impact: 4, confidence: 4, ease: 8}

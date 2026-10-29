@@ -1,0 +1,25 @@
+# Purchase rate is the sum of two exclusive routes: sessions that reached a valued page and bought,
+# and sessions that bought without one. The first route is a product of two rates.
+id: gap
+statement: New visitors have a higher purchase rate than returning visitors.
+metric: purchase_rate
+combine: sum
+children:
+  - id: via_valued
+    statement: The gap comes from sessions that reach a valued page and then buy.
+    metric: via_valued
+    combine: product
+    test: {kind: share_of_gap, min_share: 0.5}
+    children:
+      - id: reach
+        statement: New visitors reach a valued page more often.
+        metric: pv_rate
+        test: {kind: rate_gap, numerator: valued_sessions, denominator: all_sessions, direction: higher, min_effect: 0.2}
+      - id: convert
+        statement: New visitors who reach a valued page are more likely to buy.
+        metric: buy_given_valued
+        test: {kind: rate_gap, numerator: valued_purchases, denominator: valued_sessions, direction: higher, min_effect: 0.2}
+  - id: via_other
+    statement: The gap comes from purchases made without reaching a valued page.
+    metric: via_other
+    test: {kind: share_of_gap, min_share: 0.5}
