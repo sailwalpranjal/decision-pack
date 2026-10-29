@@ -44,7 +44,11 @@ class FactorSpec(_Strict):
 
 
 class BridgeSpec(_Strict):
+    """Factors are ratios of sums. ``formula`` says how they combine into the metric; the default
+    is their product, which is right when the ratios telescope (spend/impressions x ...)."""
+
     factors: list[FactorSpec] = Field(min_length=1)
+    formula: str | None = None
 
 
 class SegmentsSpec(_Strict):

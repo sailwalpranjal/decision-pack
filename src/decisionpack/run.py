@@ -14,8 +14,10 @@ from numpy.typing import NDArray
 
 from decisionpack.core.bridge import (
     Bridge,
+    MetricFn,
     OrderSensitivity,
     order_sensitivity,
+    product_metric,
     sequential_bridge,
     shapley_bridge,
 )
@@ -143,21 +145,35 @@ def run_analysis(spec: Spec, df: pd.DataFrame, base_dir: Path | None = None) -> 
         f.name: _ratio_of_sums(b, f.numerator, f.denominator, f"factor {f.name}")
         for f in spec.bridge.factors
     }
+    formula = spec.bridge.formula
+    metric_fn: MetricFn = product_metric
+    if formula:
+
+        def metric_fn(f: Mapping[str, float]) -> float:
+            return float(evaluate(formula, f))
+
     for label, factors, metric in (
         ("baseline", factors_a, metric_a),
         ("comparison", factors_b, metric_b),
     ):
-        rebuilt = math.prod(factors.values())
+        rebuilt = metric_fn(factors)
         if not math.isclose(rebuilt, metric, rel_tol=1e-6, abs_tol=1e-12):
+            how = (
+                f"formula {formula!r} does not reproduce"
+                if formula
+                else "factors do not multiply back to"
+            )
             raise AnalysisError(
-                f"the bridge factors do not multiply back to the metric ({label}): "
-                f"{rebuilt:g} against {metric:g}. The factors must telescope, for example "
+                f"the bridge {how} the metric ({label}): {rebuilt:g} against {metric:g}. "
+                "Without a formula the factors must telescope, for example "
                 "spend/impressions x impressions/clicks x clicks/approved = spend/approved."
             )
 
-    shapley = shapley_bridge(factors_a, factors_b)
-    sequential = sequential_bridge(factors_a, factors_b)
-    sensitivity = order_sensitivity(factors_a, factors_b) if len(factors_a) <= 8 else None
+    shapley = shapley_bridge(factors_a, factors_b, metric_fn)
+    sequential = sequential_bridge(factors_a, factors_b, metric=metric_fn)
+    sensitivity = (
+        order_sensitivity(factors_a, factors_b, metric_fn) if len(factors_a) <= 8 else None
+    )
 
     point, lo, hi = bootstrap_ratio_gap_ci(
         _row_values(a, m.numerator),
