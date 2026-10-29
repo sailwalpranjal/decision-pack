@@ -11,7 +11,8 @@ from decisionpack.api import app as api_module
 from decisionpack.api.app import app
 
 CASE = Path(__file__).resolve().parents[1] / "cases" / "funnel-lab"
-CSV = (CASE / "data" / "KAG_conversion_data.csv").read_bytes()
+_CSV_PATH = CASE / "data" / "KAG_conversion_data.csv"
+CSV = _CSV_PATH.read_bytes() if _CSV_PATH.exists() else b""
 
 
 def spec_text(**changes: object) -> str:

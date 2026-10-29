@@ -36,6 +36,7 @@ The output for the three cases is committed, so you can read it without running 
 python -m venv .venv && source .venv/bin/activate      # Python 3.12 or newer
 pip install -e ".[dev]"
 
+python cases/funnel-lab/prepare.py       # fetches the ad dataset (not committed, see the case README)
 decisionpack run cases/funnel-lab/spec.yaml cases/funnel-lab/data/KAG_conversion_data.csv --out pack/
 pytest                                                  # the test suite
 ```

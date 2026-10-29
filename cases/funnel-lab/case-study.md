@@ -40,12 +40,13 @@ Scores and ranges are my judgement. No test has been run.
 
 ## Data and licence
 
-- File: `data/KAG_conversion_data.csv`, 1,143 ad sets across three campaigns (936, 916 and 1178). Source: Kaggle, "Sales Conversion Optimization".
-- Licence: my funnel lab's data notes record it as public domain / CC0-equivalent. I have not independently re-verified the current licence terms on Kaggle, so check them before reusing the file.
+- File: `data/KAG_conversion_data.csv`, 1,143 ad sets across three campaigns (936, 916 and 1178). Source: Kaggle, "Sales Conversion Optimization". It is not committed; `prepare.py` fetches it and checks the SHA-256.
+- Licence: Kaggle lists it as "Other (specified in description)", and the description gives no terms. I therefore do not redistribute the file; the committed pack contains only aggregates computed from it.
 - Quirks found while running: 72 ad sets report approved conversions with zero clicks, and 218 report more enquiries than clicks (conversions credited without a click, probably). They stay in the data; they are why the segment scan sets aside segments whose "rate" exceeds 1.
 
 ## Reproduce
 
 ```bash
+python cases/funnel-lab/prepare.py
 decisionpack run cases/funnel-lab/spec.yaml cases/funnel-lab/data/KAG_conversion_data.csv --out cases/funnel-lab/pack
 ```
