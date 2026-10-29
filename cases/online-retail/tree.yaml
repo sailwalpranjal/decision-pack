@@ -1,0 +1,22 @@
+# Average order value is the product of order length, line size and unit price.
+id: gap
+statement: Average order value is higher in the second year than in the first.
+metric: aov
+combine: product
+children:
+  - id: length
+    statement: Orders got longer, with more lines on each invoice.
+    metric: lines_per_invoice
+    test: {kind: share_of_gap, min_share: 0.5}
+  - id: size
+    statement: Each line carries more units.
+    metric: units_per_line
+    test: {kind: share_of_gap, min_share: 0.25}
+    children:
+      - id: bulk
+        statement: A smaller share of lines are bulk lines (12 or more units).
+        test: {kind: rate_gap, numerator: bulk_lines_total, denominator: lines_total, direction: lower, min_effect: 0.05}
+  - id: price
+    statement: Each unit sold brings in more revenue.
+    metric: revenue_per_unit
+    test: {kind: share_of_gap, min_share: 0.25}

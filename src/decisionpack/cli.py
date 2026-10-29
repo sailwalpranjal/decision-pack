@@ -64,7 +64,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     try:
         spec = load_spec(args.spec)
-        df = pd.read_csv(args.data)
+        df = pd.read_csv(args.data, low_memory=False)
         result = run_analysis(spec, df, base_dir=args.spec.parent)
         if args.command == "check":
             print(

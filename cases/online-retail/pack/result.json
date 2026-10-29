@@ -1,0 +1,1032 @@
+{
+  "title": "Average order value rose from one year to the next because orders grew longer and prices rose, while each line carried fewer units",
+  "observational": true,
+  "metric": {
+    "name": "aov",
+    "label": "Average order value",
+    "unit": "\u00a3",
+    "lower_is_better": false,
+    "baseline": 490.4826452254311,
+    "comparison": 546.8232858262369,
+    "gap": 56.340640600805784,
+    "ratio": 1.1148677555653594,
+    "gap_ci": [
+      41.68103225385584,
+      71.37702828349106
+    ]
+  },
+  "groups": {
+    "baseline": "Dec 2009 to Nov 2010",
+    "comparison": "Dec 2010 to Nov 2011",
+    "n_baseline": 489549,
+    "n_comparison": 527009
+  },
+  "bridge": {
+    "factors": [
+      "lines_per_invoice",
+      "units_per_line",
+      "revenue_per_unit"
+    ],
+    "baseline_factors": {
+      "lines_per_invoice": 24.335089725108116,
+      "units_per_line": 11.543214264557786,
+      "revenue_per_unit": 1.7460791899583943
+    },
+    "comparison_factors": {
+      "lines_per_invoice": 27.532992006687216,
+      "units_per_line": 10.351031955811,
+      "revenue_per_unit": 1.9187126647109387
+    },
+    "shapley": {
+      "lines_per_invoice": 64.09335822114613,
+      "units_per_line": -56.70905600215849,
+      "revenue_per_unit": 48.956338381818135
+    },
+    "shapley_shares": {
+      "lines_per_invoice": 1.1376043569555983,
+      "units_per_line": -1.0065390701529837,
+      "revenue_per_unit": 0.8689347131973852
+    },
+    "sequential": {
+      "lines_per_invoice": 64.45489159725668,
+      "units_per_line": -57.31390743485184,
+      "revenue_per_unit": 49.19965643840095
+    },
+    "sequential_order": [
+      "lines_per_invoice",
+      "units_per_line",
+      "revenue_per_unit"
+    ],
+    "waterfall": [
+      {
+        "label": "Dec 2009 to Nov 2010",
+        "start": 0.0,
+        "end": 490.4826452254311,
+        "delta": 490.4826452254311
+      },
+      {
+        "label": "Order length",
+        "start": 490.4826452254311,
+        "end": 554.5760034465773,
+        "delta": 64.09335822114613
+      },
+      {
+        "label": "Line size",
+        "start": 554.5760034465773,
+        "end": 497.86694744441877,
+        "delta": -56.70905600215849
+      },
+      {
+        "label": "Unit price",
+        "start": 497.86694744441877,
+        "end": 546.8232858262369,
+        "delta": 48.956338381818135
+      },
+      {
+        "label": "Dec 2010 to Nov 2011",
+        "start": 0.0,
+        "end": 546.8232858262369,
+        "delta": 546.8232858262369
+      }
+    ],
+    "order_sensitivity": {
+      "n_orders": 6,
+      "min_share": {
+        "lines_per_invoice": 1.0258668446361088,
+        "units_per_line": -1.1178518324564732,
+        "revenue_per_unit": 0.7718267612181763
+      },
+      "max_share": {
+        "lines_per_invoice": 1.257129759730243,
+        "units_per_line": -0.8991202530770717,
+        "revenue_per_unit": 0.97383055563175
+      }
+    }
+  },
+  "segments": {
+    "rate_baseline": 0.25102083754639476,
+    "rate_comparison": 0.24617985651098936,
+    "gap": -0.004840981035405395,
+    "alpha": 0.05,
+    "correction": "bh",
+    "family_size": 21,
+    "rows": [
+      {
+        "dimension": "Country",
+        "value": "United Kingdom",
+        "num_a": 103904.0,
+        "den_a": 452509.0,
+        "num_b": 107206.0,
+        "den_b": 482398.0,
+        "rate_a": 0.22961753246896746,
+        "rate_b": 0.2222355814078831,
+        "diff": -0.0073819510610843575,
+        "ci_low": -0.0090784517911374,
+        "ci_high": -0.005685450331031314,
+        "weight_a": 0.9243385238249899,
+        "weight_b": 0.915350591735625,
+        "rate_effect": -0.006790247509339012,
+        "mix_effect": -0.0020306125509465946,
+        "contribution": -0.008820860060285606,
+        "z": -8.531176659166718,
+        "p_value": 1.4486661686696353e-17,
+        "p_holm": 2.752465720472307e-16,
+        "p_bh": 1.0140663180687447e-16,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "12",
+        "num_a": 9084.0,
+        "den_a": 43957.0,
+        "num_b": 12337.0,
+        "den_b": 63496.0,
+        "rate_a": 0.20665650522101145,
+        "rate_b": 0.1942957036663727,
+        "diff": -0.012360801554638756,
+        "ci_low": -0.017239183487405784,
+        "ci_high": -0.007482419621871729,
+        "weight_a": 0.08979080745747617,
+        "weight_b": 0.12048371090436785,
+        "rate_effect": -0.0012995807967339987,
+        "mix_effect": 0.006153193717099214,
+        "contribution": 0.004853612920365215,
+        "z": -4.986470253149324,
+        "p_value": 6.149236902976915e-07,
+        "p_holm": 9.838779044763064e-06,
+        "p_bh": 2.1522329160419204e-06,
+        "significant": true
+      },
+      {
+        "dimension": "price_band",
+        "value": "1 to 3",
+        "num_a": 62542.0,
+        "den_a": 233257.0,
+        "num_b": 65143.0,
+        "den_b": 238539.0,
+        "rate_a": 0.2681248579892565,
+        "rate_b": 0.27309161185382685,
+        "diff": 0.00496675386457035,
+        "ci_low": 0.002431284941973848,
+        "ci_high": 0.007502222787166852,
+        "weight_a": 0.4764732437406674,
+        "weight_b": 0.45262794373530624,
+        "rate_effect": 0.0023073084567365966,
+        "mix_effect": -0.0064527345456254145,
+        "contribution": -0.004145426088888818,
+        "z": 3.83908375857653,
+        "p_value": 0.00012349429973549186,
+        "p_holm": 0.0018524144960323779,
+        "p_bh": 0.00037048289920647555,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "4",
+        "num_a": 8868.0,
+        "den_a": 33268.0,
+        "num_b": 7469.0,
+        "den_b": 29096.0,
+        "rate_a": 0.2665624624263557,
+        "rate_b": 0.25670195215837227,
+        "diff": -0.009860510267983402,
+        "ci_low": -0.016771860363161698,
+        "ci_high": -0.0029491601728051063,
+        "weight_a": 0.06795642519952037,
+        "weight_b": 0.055209683326091205,
+        "rate_effect": -0.0006072403388921755,
+        "mix_effect": -0.003334958212131276,
+        "contribution": -0.003942198551023452,
+        "z": -2.79385506385638,
+        "p_value": 0.005208381640436905,
+        "p_holm": 0.05896767417785636,
+        "p_bh": 0.00994327404083409,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "10",
+        "num_a": 16056.0,
+        "den_a": 57797.0,
+        "num_b": 15426.0,
+        "den_b": 59304.0,
+        "rate_a": 0.2777998858072218,
+        "rate_b": 0.2601173613921489,
+        "diff": -0.017682524415072898,
+        "ci_low": -0.022762003791606204,
+        "ci_high": -0.012603045038539592,
+        "weight_a": 0.11806172620105444,
+        "weight_b": 0.11252938754366623,
+        "rate_effect": -0.0020387164993449377,
+        "mix_effect": -0.0014879701905784646,
+        "contribution": -0.0035266866899234025,
+        "z": -6.823433719424988,
+        "p_value": 8.888976292519757e-12,
+        "p_holm": 1.6000157326535562e-10,
+        "p_bh": 4.6667125535728726e-11,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "3",
+        "num_a": 9798.0,
+        "den_a": 40364.0,
+        "num_b": 9067.0,
+        "den_b": 35803.0,
+        "rate_a": 0.2427410563868794,
+        "rate_b": 0.2532469346144178,
+        "diff": 0.010505878227538373,
+        "ci_low": 0.0043589469001984495,
+        "ci_high": 0.016652809554878297,
+        "weight_a": 0.08245139914492727,
+        "weight_b": 0.06793622120305345,
+        "rate_effect": 0.0007899770131525788,
+        "mix_effect": -0.00359967697320817,
+        "contribution": -0.002809699960055591,
+        "z": 3.3524267770950047,
+        "p_value": 0.0008010642830628231,
+        "p_holm": 0.011214899962879523,
+        "p_bh": 0.0021027937430399104,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "9",
+        "num_a": 12618.0,
+        "den_a": 41109.0,
+        "num_b": 14788.0,
+        "den_b": 49261.0,
+        "rate_a": 0.3069400861125301,
+        "rate_b": 0.30019691033474755,
+        "diff": -0.006743175777782551,
+        "ci_low": -0.012764870575646145,
+        "ci_high": -0.0007214809799189568,
+        "weight_a": 0.08397320799347971,
+        "weight_b": 0.0934727869922525,
+        "rate_effect": -0.0005982747676261567,
+        "mix_effect": 0.002883772930414276,
+        "contribution": 0.0022854981627881193,
+        "z": -2.195976601068668,
+        "p_value": 0.028093618222989426,
+        "p_holm": 0.20693558539642773,
+        "p_bh": 0.0393310655121852,
+        "significant": true
+      },
+      {
+        "dimension": "Country",
+        "value": "France",
+        "num_a": 2559.0,
+        "den_a": 5264.0,
+        "num_b": 3878.0,
+        "den_b": 8351.0,
+        "rate_a": 0.4861322188449848,
+        "rate_b": 0.46437552388935455,
+        "diff": -0.021756694955630262,
+        "ci_low": -0.03898213941409379,
+        "ci_high": -0.004531250497166732,
+        "weight_a": 0.010752754065476591,
+        "weight_b": 0.015846029194947334,
+        "rate_effect": -0.00028935080679398396,
+        "mix_effect": 0.0024205987232190926,
+        "contribution": 0.0021312479164251087,
+        "z": -2.4761984424411723,
+        "p_value": 0.013278974864809088,
+        "p_holm": 0.11951077378328179,
+        "p_bh": 0.021450651704691605,
+        "significant": true
+      },
+      {
+        "dimension": "price_band",
+        "value": "under 1",
+        "num_a": 51112.0,
+        "den_a": 91260.0,
+        "num_b": 53961.0,
+        "den_b": 108505.0,
+        "rate_a": 0.5600701293008985,
+        "rate_b": 0.4973134878577024,
+        "diff": -0.06275664144319609,
+        "ci_low": -0.06714094576586636,
+        "ci_high": -0.058372337120525815,
+        "weight_a": 0.18641647720657176,
+        "weight_b": 0.2058883244878171,
+        "rate_effect": -0.012309865888189454,
+        "mix_effect": 0.010294606155501537,
+        "contribution": -0.0020152597326879174,
+        "z": -27.982227952522532,
+        "p_value": 2.673694910762392e-172,
+        "p_holm": 5.614759312601024e-171,
+        "p_bh": 5.614759312601024e-171,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "6",
+        "num_a": 9324.0,
+        "den_a": 38900.0,
+        "num_b": 8984.0,
+        "den_b": 35977.0,
+        "rate_a": 0.23969151670951158,
+        "rate_b": 0.24971509575562165,
+        "diff": 0.010023579046110065,
+        "ci_low": 0.0038590261467728966,
+        "ci_high": 0.016188131945447232,
+        "weight_a": 0.07946089155528864,
+        "weight_b": 0.06826638634254822,
+        "rate_effect": 0.000740378023637818,
+        "mix_effect": -0.0027393324371952814,
+        "contribution": -0.0019989544135574633,
+        "z": 3.18841327428989,
+        "p_value": 0.001430559154812148,
+        "p_holm": 0.018597269012557923,
+        "p_bh": 0.0033379713612283453,
+        "significant": true
+      },
+      {
+        "dimension": "Country",
+        "value": "EIRE",
+        "num_a": 4573.0,
+        "den_a": 9284.0,
+        "num_b": 3870.0,
+        "den_b": 7732.0,
+        "rate_a": 0.49256785868160274,
+        "rate_b": 0.500517330574237,
+        "diff": 0.00794947189263423,
+        "ci_low": -0.007137824293929404,
+        "ci_high": 0.023036768079197863,
+        "weight_a": 0.018964393758336754,
+        "weight_b": 0.014671476198698694,
+        "rate_effect": 0.0001336937014038767,
+        "mix_effect": -0.00213161642358644,
+        "contribution": -0.0019979227221825634,
+        "z": 1.0326798396312993,
+        "p_value": 0.3017537511645514,
+        "p_holm": 1.0,
+        "p_bh": 0.35204604302530995,
+        "significant": false
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "2",
+        "num_a": 6906.0,
+        "den_a": 28281.0,
+        "num_b": 6733.0,
+        "den_b": 27105.0,
+        "rate_a": 0.2441922138538241,
+        "rate_b": 0.24840435344032466,
+        "diff": 0.004212139586500546,
+        "ci_low": -0.0029662628459073545,
+        "ci_high": 0.011390542018908448,
+        "weight_a": 0.05776949804820355,
+        "weight_b": 0.05143175922991827,
+        "rate_effect": 0.00022998546933840393,
+        "mix_effect": -0.0015609741931471009,
+        "contribution": -0.001330988723808697,
+        "z": 1.1501935864542376,
+        "p_value": 0.25006414720526937,
+        "p_holm": 1.0,
+        "p_bh": 0.32820919320691605,
+        "significant": false
+      },
+      {
+        "dimension": "price_band",
+        "value": "3 to 10",
+        "num_a": 8591.0,
+        "den_a": 140831.0,
+        "num_b": 9898.0,
+        "den_b": 156041.0,
+        "rate_a": 0.061002194119192506,
+        "rate_b": 0.06343204670567351,
+        "diff": 0.002429852586481006,
+        "ci_low": 0.0006906030666642433,
+        "ci_high": 0.004169102106297768,
+        "weight_a": 0.287674982483878,
+        "weight_b": 0.2960879225971473,
+        "rate_effect": 0.0007092289024013976,
+        "mix_effect": 0.0005234289080498615,
+        "contribution": 0.0012326578104512591,
+        "z": 2.735614980438823,
+        "p_value": 0.0062263829696908805,
+        "p_holm": 0.0622638296969088,
+        "p_bh": 0.010896170196959041,
+        "significant": true
+      },
+      {
+        "dimension": "Country",
+        "value": "Germany",
+        "num_a": 3717.0,
+        "den_a": 7416.0,
+        "num_b": 4416.0,
+        "den_b": 8961.0,
+        "rate_a": 0.5012135922330098,
+        "rate_b": 0.49280214261801136,
+        "diff": -0.0084114496149984,
+        "ci_low": -0.023794805662447745,
+        "ci_high": 0.006971906432450943,
+        "weight_a": 0.015148636806530093,
+        "weight_b": 0.01700350468398073,
+        "rate_effect": -0.00013522305908086568,
+        "mix_effect": 0.0009218839281278239,
+        "contribution": 0.0007866608690469582,
+        "z": -1.0716593164977797,
+        "p_value": 0.2838730803757865,
+        "p_holm": 1.0,
+        "p_bh": 0.3506667463465598,
+        "significant": false
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "11",
+        "num_a": 16849.0,
+        "den_a": 76464.0,
+        "num_b": 18427.0,
+        "den_b": 83369.0,
+        "rate_a": 0.22035206110064867,
+        "rate_b": 0.2210293994170495,
+        "diff": 0.0006773383164008218,
+        "ci_low": -0.003392592402679112,
+        "ci_high": 0.004747269035480756,
+        "weight_a": 0.15619274066538794,
+        "weight_b": 0.1581927443364345,
+        "rate_effect": 0.0001064726675559951,
+        "mix_effect": 0.00044138227068364253,
+        "contribution": 0.0005478549382396376,
+        "z": 0.3261714433469988,
+        "p_value": 0.7442946458575309,
+        "p_holm": 1.0,
+        "p_bh": 0.7442946458575309,
+        "significant": false
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "1",
+        "num_a": 6685.0,
+        "den_a": 30638.0,
+        "num_b": 7419.0,
+        "den_b": 34306.0,
+        "rate_a": 0.21819309354396502,
+        "rate_b": 0.21625954643502596,
+        "diff": -0.00193354710893906,
+        "ci_low": -0.008287074826938155,
+        "ci_high": 0.004419980609060036,
+        "weight_a": 0.06258413355966409,
+        "weight_b": 0.0650956625029174,
+        "rate_effect": -0.0001234374502733666,
+        "mix_effect": 0.0005455701898900225,
+        "contribution": 0.00042213273961665593,
+        "z": -0.5965757578901615,
+        "p_value": 0.550790660396242,
+        "p_holm": 1.0,
+        "p_bh": 0.5783301934160542,
+        "significant": false
+      },
+      {
+        "dimension": "Country",
+        "value": "Netherlands",
+        "num_a": 1942.0,
+        "den_a": 2727.0,
+        "num_b": 1903.0,
+        "den_b": 2275.0,
+        "rate_a": 0.7121378804547122,
+        "rate_b": 0.8364835164835165,
+        "diff": 0.12434563602880433,
+        "ci_low": 0.10154797366366204,
+        "ci_high": 0.1471432983939466,
+        "weight_a": 0.005570433194634245,
+        "weight_b": 0.004316814323854052,
+        "rate_effect": 0.0006147180406303222,
+        "mix_effect": -0.000970690503447874,
+        "contribution": -0.0003559724628175517,
+        "z": 10.385342163669701,
+        "p_value": 2.891306979424996e-25,
+        "p_holm": 5.782613958849992e-24,
+        "p_bh": 3.0358723283962455e-24,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "7",
+        "num_a": 8699.0,
+        "den_a": 32503.0,
+        "num_b": 9537.0,
+        "den_b": 38645.0,
+        "rate_a": 0.2676368335230594,
+        "rate_b": 0.24678483633070256,
+        "diff": -0.020851997192356836,
+        "ci_low": -0.027305140870539174,
+        "ci_high": -0.014398853514174498,
+        "weight_a": 0.06639376242214773,
+        "weight_b": 0.07332891848146805,
+        "rate_effect": -0.001456748474955383,
+        "mix_effect": 0.0017837972803659982,
+        "contribution": 0.0003270488054106151,
+        "z": -6.345933330747869,
+        "p_value": 2.2108096731363956e-10,
+        "p_holm": 3.758376444331873e-09,
+        "p_bh": 9.285400627172862e-10,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "8",
+        "num_a": 9153.0,
+        "den_a": 32473.0,
+        "num_b": 9988.0,
+        "den_b": 34483.0,
+        "rate_a": 0.28186493394512363,
+        "rate_b": 0.28964997245019286,
+        "diff": 0.0077850385050692306,
+        "ci_low": 0.0009391258411460572,
+        "ci_high": 0.014630951168992403,
+        "weight_a": 0.06633248152891744,
+        "weight_b": 0.06543152014481726,
+        "rate_effect": 0.0005128939133060156,
+        "mix_effect": -0.00025745643054990284,
+        "contribution": 0.00025543748275611277,
+        "z": 2.228203494230463,
+        "p_value": 0.025866948174553466,
+        "p_holm": 0.20693558539642773,
+        "p_bh": 0.038800422261830204,
+        "significant": true
+      },
+      {
+        "dimension": "price_band",
+        "value": "10 or more",
+        "num_a": 642.0,
+        "den_a": 24201.0,
+        "num_b": 737.0,
+        "den_b": 23924.0,
+        "rate_a": 0.02652782942853601,
+        "rate_b": 0.03080588530346096,
+        "diff": 0.004278055874924948,
+        "ci_low": 0.0012959100486973868,
+        "ci_high": 0.007260201701152508,
+        "weight_a": 0.049435296568882785,
+        "weight_b": 0.04539580917972938,
+        "rate_effect": 0.00020284638453673965,
+        "mix_effect": -0.00011579940881661029,
+        "contribution": 8.704697572012936e-05,
+        "z": 2.81261971114886,
+        "p_value": 0.004913972848154697,
+        "p_holm": 0.05896767417785636,
+        "p_bh": 0.00994327404083409,
+        "significant": true
+      },
+      {
+        "dimension": "month_of_year",
+        "value": "5",
+        "num_a": 8847.0,
+        "den_a": 33795.0,
+        "num_b": 9564.0,
+        "den_b": 36164.0,
+        "rate_a": 0.2617842876165113,
+        "rate_b": 0.26446189580798585,
+        "diff": 0.0026776081914745564,
+        "ci_low": -0.0038515369645931658,
+        "ci_high": 0.009206753347542278,
+        "weight_a": 0.06903292622393264,
+        "weight_b": 0.06862121899246502,
+        "rate_effect": 0.00018429193341092727,
+        "mix_effect": -0.00010832967962405056,
+        "contribution": 7.596225378687672e-05,
+        "z": 0.8036902158067651,
+        "p_value": 0.4215759061555213,
+        "p_holm": 1.0,
+        "p_bh": 0.46595231732978676,
+        "significant": false
+      }
+    ],
+    "excluded": [
+      {
+        "dimension": "Country",
+        "value": "Australia",
+        "reason": "below the minimum denominator of 2000 (A=608, B=1204)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Austria",
+        "reason": "below the minimum denominator of 2000 (A=524, B=391)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Bahrain",
+        "reason": "below the minimum denominator of 2000 (A=106, B=18)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Belgium",
+        "reason": "below the minimum denominator of 2000 (A=1025, B=1949)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Bermuda",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "Brazil",
+        "reason": "below the minimum denominator of 2000 (A=62, B=32)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Canada",
+        "reason": "below the minimum denominator of 2000 (A=77, B=151)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Channel Islands",
+        "reason": "below the minimum denominator of 2000 (A=804, B=760)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Cyprus",
+        "reason": "below the minimum denominator of 2000 (A=541, B=614)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Czech Republic",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "Denmark",
+        "reason": "below the minimum denominator of 2000 (A=398, B=389)"
+      },
+      {
+        "dimension": "Country",
+        "value": "European Community",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "Finland",
+        "reason": "below the minimum denominator of 2000 (A=347, B=672)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Greece",
+        "reason": "below the minimum denominator of 2000 (A=512, B=109)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Hong Kong",
+        "reason": "below the minimum denominator of 2000 (A=74, B=284)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Iceland",
+        "reason": "below the minimum denominator of 2000 (A=40, B=202)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Israel",
+        "reason": "below the minimum denominator of 2000 (A=74, B=295)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Italy",
+        "reason": "below the minimum denominator of 2000 (A=686, B=774)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Japan",
+        "reason": "below the minimum denominator of 2000 (A=147, B=338)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Korea",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "Lebanon",
+        "reason": "below the minimum denominator of 2000 (A=12, B=45)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Lithuania",
+        "reason": "below the minimum denominator of 2000 (A=119, B=70)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Malta",
+        "reason": "below the minimum denominator of 2000 (A=170, B=112)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Nigeria",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "Norway",
+        "reason": "below the minimum denominator of 2000 (A=218, B=1145)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Poland",
+        "reason": "below the minimum denominator of 2000 (A=174, B=338)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Portugal",
+        "reason": "below the minimum denominator of 2000 (A=981, B=1480)"
+      },
+      {
+        "dimension": "Country",
+        "value": "RSA",
+        "reason": "below the minimum denominator of 2000 (A=110, B=57)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Saudi Arabia",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "Singapore",
+        "reason": "below the minimum denominator of 2000 (A=117, B=222)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Spain",
+        "reason": "below the minimum denominator of 2000 (A=1190, B=2464)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Sweden",
+        "reason": "below the minimum denominator of 2000 (A=887, B=450)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Switzerland",
+        "reason": "below the minimum denominator of 2000 (A=1164, B=1972)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Thailand",
+        "reason": "present in only one group"
+      },
+      {
+        "dimension": "Country",
+        "value": "USA",
+        "reason": "below the minimum denominator of 2000 (A=230, B=147)"
+      },
+      {
+        "dimension": "Country",
+        "value": "United Arab Emirates",
+        "reason": "below the minimum denominator of 2000 (A=399, B=68)"
+      },
+      {
+        "dimension": "Country",
+        "value": "Unspecified",
+        "reason": "below the minimum denominator of 2000 (A=306, B=446)"
+      },
+      {
+        "dimension": "Country",
+        "value": "West Indies",
+        "reason": "present in only one group"
+      }
+    ],
+    "simpson": [
+      {
+        "stratifier": "price_band",
+        "overall_diff": -0.004840981035405395,
+        "stratum_diffs": {
+          "1 to 3": 0.00496675386457035,
+          "10 or more": 0.004278055874924948,
+          "3 to 10": 0.002429852586481006,
+          "under 1": -0.06275664144319609
+        },
+        "stratum_weights_a": {
+          "1 to 3": 0.4764732437406674,
+          "10 or more": 0.049435296568882785,
+          "3 to 10": 0.287674982483878,
+          "under 1": 0.18641647720657176
+        },
+        "stratum_weights_b": {
+          "1 to 3": 0.45262794373530624,
+          "10 or more": 0.04539580917972938,
+          "3 to 10": 0.2960879225971473,
+          "under 1": 0.2058883244878171
+        },
+        "reversed": false,
+        "message": "No reversal across 'price_band' (4 levels compared)."
+      }
+    ]
+  },
+  "tree": {
+    "results": [
+      {
+        "node_id": "gap",
+        "statement": "Average order value is higher in the second year than in the first.",
+        "status": "untested",
+        "detail": "no test is attached to this node",
+        "statistic": null
+      },
+      {
+        "node_id": "length",
+        "statement": "Orders got longer, with more lines on each invoice.",
+        "status": "supported",
+        "detail": "113.8% of the gap (threshold 50%; Shapley split)",
+        "statistic": 1.1376043569555983
+      },
+      {
+        "node_id": "size",
+        "statement": "Each line carries more units.",
+        "status": "refuted",
+        "detail": "-100.7% of the gap (threshold 25%; Shapley split)",
+        "statistic": -1.0065390701529837
+      },
+      {
+        "node_id": "bulk",
+        "statement": "A smaller share of lines are bulk lines (12 or more units).",
+        "status": "supported",
+        "detail": "rate 25.10% -> 24.62% (diff -0.48%, p = 1.67e-08); the gap is in the claimed direction (lower)",
+        "statistic": -0.004840981035405395
+      },
+      {
+        "node_id": "price",
+        "statement": "Each unit sold brings in more revenue.",
+        "status": "supported",
+        "detail": "86.9% of the gap (threshold 25%; Shapley split)",
+        "statistic": 0.8689347131973852
+      }
+    ],
+    "mece_problems": []
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "id": "R2",
+      "title": "Find out why units per line fell, starting with whether bulk buyers are ordering less or the customer mix changed",
+      "rationale": "Units per line fell about 10% and the share of bulk lines (12 or more units) dipped slightly. A change in who buys and a change in how much each buyer takes need different responses.",
+      "impact_unit": "pounds of revenue protected over a comparable year",
+      "low": 0.0,
+      "base": 104662.988,
+      "high": 313988.964,
+      "score": 5.666666666666667,
+      "arithmetic": "ICE = (5 + 5 + 7) / 3 = 5.67",
+      "assumptions": [
+        {
+          "name": "invoices",
+          "low": 19141.0,
+          "base": 19141.0,
+          "high": 19141.0,
+          "source": "Invoices in Dec 2010 to Nov 2011 in the dataset"
+        },
+        {
+          "name": "aov",
+          "low": 546.8,
+          "base": 546.8,
+          "high": 546.8,
+          "source": "Average order value in the same year, from the data"
+        },
+        {
+          "name": "protected_share",
+          "low": 0.0,
+          "base": 0.01,
+          "high": 0.03,
+          "source": "My judgement; share of revenue that acting on the finding would protect"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "protected_share",
+          "at_low": 0.0,
+          "at_high": 313988.964,
+          "swing": 313988.964
+        },
+        {
+          "name": "invoices",
+          "at_low": 104662.988,
+          "at_high": 104662.988,
+          "swing": 0.0
+        },
+        {
+          "name": "aov",
+          "at_low": 104662.988,
+          "at_high": 104662.988,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "rank": 2,
+      "id": "R1",
+      "title": "Test an order-value threshold, such as free delivery just above today's average order, on a sample of customers",
+      "rationale": "Longer orders account for more than the whole rise in average order value (114% of it, partly cancelled by smaller lines), so nudging orders slightly longer is the lever the data points to. Whether a threshold would do it is a hypothesis, not something this data shows.",
+      "impact_unit": "pounds of extra revenue over a comparable year",
+      "low": 0.0,
+      "base": 156994.482,
+      "high": 418651.952,
+      "score": 5.333333333333333,
+      "arithmetic": "ICE = (6 + 4 + 6) / 3 = 5.33",
+      "assumptions": [
+        {
+          "name": "invoices",
+          "low": 19141.0,
+          "base": 19141.0,
+          "high": 19141.0,
+          "source": "Invoices in Dec 2010 to Nov 2011 in the dataset"
+        },
+        {
+          "name": "aov",
+          "low": 546.8,
+          "base": 546.8,
+          "high": 546.8,
+          "source": "Average order value in the same year, from the data"
+        },
+        {
+          "name": "uplift",
+          "low": 0.0,
+          "base": 0.015,
+          "high": 0.04,
+          "source": "My judgement, no test has been run; relative rise in average order value among invoices that see the threshold"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "uplift",
+          "at_low": 0.0,
+          "at_high": 418651.952,
+          "swing": 418651.952
+        },
+        {
+          "name": "invoices",
+          "at_low": 156994.482,
+          "at_high": 156994.482,
+          "swing": 0.0
+        },
+        {
+          "name": "aov",
+          "at_low": 156994.482,
+          "at_high": 156994.482,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "rank": 3,
+      "id": "R3",
+      "title": "Record a customer id on every order, then repeat the analysis by customer",
+      "rationale": "23% of lines have no customer id, so repeat purchase and customer-level questions cannot be asked of this data at all.",
+      "impact_unit": "pounds of revenue influenced by decisions the data would then support",
+      "low": 0.0,
+      "base": 52331.494,
+      "high": 209325.976,
+      "score": 4.333333333333333,
+      "arithmetic": "ICE = (4 + 4 + 5) / 3 = 4.33",
+      "assumptions": [
+        {
+          "name": "invoices",
+          "low": 19141.0,
+          "base": 19141.0,
+          "high": 19141.0,
+          "source": "Invoices in Dec 2010 to Nov 2011 in the dataset"
+        },
+        {
+          "name": "aov",
+          "low": 546.8,
+          "base": 546.8,
+          "high": 546.8,
+          "source": "Average order value in the same year, from the data"
+        },
+        {
+          "name": "share_unlocked",
+          "low": 0.0,
+          "base": 0.005,
+          "high": 0.02,
+          "source": "My judgement; share of revenue that customer-level decisions would improve"
+        }
+      ],
+      "sensitivity": [
+        {
+          "name": "share_unlocked",
+          "at_low": 0.0,
+          "at_high": 209325.976,
+          "swing": 209325.976
+        },
+        {
+          "name": "invoices",
+          "at_low": 52331.494,
+          "at_high": 52331.494,
+          "swing": 0.0
+        },
+        {
+          "name": "aov",
+          "at_low": 52331.494,
+          "at_high": 52331.494,
+          "swing": 0.0
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "warnings": [
+    "Observational data: the groups were not randomly assigned, so gaps describe differences, not causes.",
+    "The segment scan compared 21 segments; p-values are adjusted for that (BH).",
+    "38 segment(s) were set aside; see the scan table."
+  ]
+}

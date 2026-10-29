@@ -103,7 +103,7 @@ def _compute(job: Job, spec_text: str, csv_bytes: bytes) -> None:
                 "put the tree inline under 'tree'"
             )
         spec = parse_spec(data)
-        df = pd.read_csv(io.BytesIO(csv_bytes))
+        df = pd.read_csv(io.BytesIO(csv_bytes), low_memory=False)
         if len(df) > MAX_ROWS:
             raise AnalysisError(f"the CSV has {len(df)} rows; the limit is {MAX_ROWS}")
         result = run_analysis(spec, df)

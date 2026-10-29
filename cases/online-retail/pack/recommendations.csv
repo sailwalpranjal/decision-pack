@@ -1,0 +1,4 @@
+rank,id,title,unit,low,base,high,score,arithmetic
+1,R2,"Find out why units per line fell, starting with whether bulk buyers are ordering less or the customer mix changed",pounds of revenue protected over a comparable year,0.00,104662.99,313988.96,5.67,ICE = (5 + 5 + 7) / 3 = 5.67
+2,R1,"Test an order-value threshold, such as free delivery just above today's average order, on a sample of customers",pounds of extra revenue over a comparable year,0.00,156994.48,418651.95,5.33,ICE = (6 + 4 + 6) / 3 = 5.33
+3,R3,"Record a customer id on every order, then repeat the analysis by customer",pounds of revenue influenced by decisions the data would then support,0.00,52331.49,209325.98,4.33,ICE = (4 + 4 + 5) / 3 = 4.33

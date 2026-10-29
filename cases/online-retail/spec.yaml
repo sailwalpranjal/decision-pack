@@ -1,0 +1,74 @@
+title: Average order value rose from one year to the next because orders grew longer and prices rose, while each line carried fewer units
+metric:
+  name: aov
+  label: Average order value
+  numerator: revenue
+  denominator: new_invoice
+  unit: "£"
+  lower_is_better: false
+  decimals: 2
+groups:
+  column: period
+  baseline: Y1
+  comparison: Y2
+  baseline_label: Dec 2009 to Nov 2010
+  comparison_label: Dec 2010 to Nov 2011
+derived_columns:
+  bulk_lines: where(Quantity >= 12, 1, 0)
+bridge:
+  # Revenue per invoice = lines per invoice x units per line x revenue per unit. The product telescopes.
+  factors:
+    - {name: lines_per_invoice, label: Order length, description: invoice lines per invoice, numerator: lines, denominator: new_invoice}
+    - {name: units_per_line, label: Line size, description: units per invoice line, numerator: Quantity, denominator: lines}
+    - {name: revenue_per_unit, label: Unit price, description: revenue per unit sold, numerator: revenue, denominator: Quantity}
+measures:
+  bulk_lines_total: sum(bulk_lines)
+  lines_total: sum(lines)
+segments:
+  dimensions: [Country, month_of_year, price_band]
+  numerator: bulk_lines
+  denominator: lines
+  label: bulk-line share
+  min_denominator: 2000
+  alpha: 0.05
+  correction: bh
+  simpson_stratifiers: [price_band]
+tree_file: tree.yaml
+n_boot: 500
+data_notes:
+  - "UCI Machine Learning Repository, Online Retail II (CC BY 4.0): invoice lines from a UK-based online retailer, December 2009 to December 2011. 1,067,371 lines in the file; 1,016,558 are sales lines in the two full years analysed."
+  - "A sales line has a positive quantity and price on a non-cancelled invoice. Cancellations, returns and zero-price lines are excluded, so revenue here is gross of returns."
+  - "Y1 is December 2009 to November 2010, Y2 is December 2010 to November 2011. December 2011 is dropped because the data end on 9 December."
+  - "23% of lines in the file carry no customer id, so nothing here is about customers, only about invoices and lines."
+  - "The comparison is across calendar years of one business. Seasonality is the same in both years, but anything else that changed (assortment, pricing policy, customer mix) is mixed together."
+recommendations:
+  - id: R1
+    title: Test an order-value threshold, such as free delivery just above today's average order, on a sample of customers
+    rationale: Longer orders account for more than the whole rise in average order value (114% of it, partly cancelled by smaller lines), so nudging orders slightly longer is the lever the data points to. Whether a threshold would do it is a hypothesis, not something this data shows.
+    impact_formula: invoices * aov * uplift
+    impact_unit: pounds of extra revenue over a comparable year
+    assumptions:
+      - {name: invoices, low: 19141, base: 19141, high: 19141, source: "Invoices in Dec 2010 to Nov 2011 in the dataset"}
+      - {name: aov, low: 546.8, base: 546.8, high: 546.8, source: "Average order value in the same year, from the data"}
+      - {name: uplift, low: 0.0, base: 0.015, high: 0.04, source: "My judgement, no test has been run; relative rise in average order value among invoices that see the threshold"}
+    scoring: {method: ice, impact: 6, confidence: 4, ease: 6}
+  - id: R2
+    title: Find out why units per line fell, starting with whether bulk buyers are ordering less or the customer mix changed
+    rationale: Units per line fell about 10% and the share of bulk lines (12 or more units) dipped slightly. A change in who buys and a change in how much each buyer takes need different responses.
+    impact_formula: invoices * aov * protected_share
+    impact_unit: pounds of revenue protected over a comparable year
+    assumptions:
+      - {name: invoices, low: 19141, base: 19141, high: 19141, source: "Invoices in Dec 2010 to Nov 2011 in the dataset"}
+      - {name: aov, low: 546.8, base: 546.8, high: 546.8, source: "Average order value in the same year, from the data"}
+      - {name: protected_share, low: 0.0, base: 0.01, high: 0.03, source: "My judgement; share of revenue that acting on the finding would protect"}
+    scoring: {method: ice, impact: 5, confidence: 5, ease: 7}
+  - id: R3
+    title: Record a customer id on every order, then repeat the analysis by customer
+    rationale: 23% of lines have no customer id, so repeat purchase and customer-level questions cannot be asked of this data at all.
+    impact_formula: invoices * aov * share_unlocked
+    impact_unit: pounds of revenue influenced by decisions the data would then support
+    assumptions:
+      - {name: invoices, low: 19141, base: 19141, high: 19141, source: "Invoices in Dec 2010 to Nov 2011 in the dataset"}
+      - {name: aov, low: 546.8, base: 546.8, high: 546.8, source: "Average order value in the same year, from the data"}
+      - {name: share_unlocked, low: 0.0, base: 0.005, high: 0.02, source: "My judgement; share of revenue that customer-level decisions would improve"}
+    scoring: {method: ice, impact: 4, confidence: 4, ease: 5}
