@@ -23,7 +23,7 @@ OUT = Path(__file__).resolve().parent / "data" / "KAG_conversion_data.csv"
 def main() -> None:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     print(f"downloading {URL}")
-    with urllib.request.urlopen(URL, timeout=60) as resp:  # noqa: S310
+    with urllib.request.urlopen(URL, timeout=60) as resp:
         data = resp.read()
     digest = hashlib.sha256(data).hexdigest()
     if digest != SHA256:
