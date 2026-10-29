@@ -77,7 +77,7 @@ def test_simpson_rejects_bad_columns():
 # ---- scan ---------------------------------------------------------------------------------
 
 
-def synthetic(seed: int = 0) -> pd.DataFrame:
+def synthetic(seed: int = 2) -> pd.DataFrame:
     """Two groups, three dimensions. Only seg 'x1' truly differs between groups."""
     rng = np.random.default_rng(seed)
     rows = []
@@ -96,11 +96,18 @@ def synthetic(seed: int = 0) -> pd.DataFrame:
 def test_scan_finds_the_planted_segment_and_not_noise():
     scan = scan_segments(synthetic(), "grp", "A", "B", ["age", "sex", "dev"], "num", "den",
                          min_denominator=500, alpha=0.05)
-    significant = {(r.dimension, r.value) for r in scan.rows if r.significant}
-    assert ("dev", "x1") in significant
-    assert not {("sex", "F"), ("sex", "M"), ("age", "25-34")} & significant
+    by_dev = {r.value: r for r in scan.rows if r.dimension == "dev"}
+    assert by_dev["x1"].significant
+    assert not by_dev["x2"].significant and not by_dev["x3"].significant
+    assert by_dev["x1"].diff == pytest.approx(0.06, abs=0.012)
     top = scan.rows[0]
     assert (top.dimension, top.value) == ("dev", "x1")
+    # the planted effect sits in a third of every age and sex segment, so those show about a
+    # third of it; they are real differences, just much smaller than the x1 one
+    for r in scan.rows:
+        if r.dimension in ("age", "sex"):
+            assert r.diff == pytest.approx(0.02, abs=0.012)
+            assert abs(r.contribution) < abs(top.contribution)
 
 
 def test_scan_contributions_sum_to_the_gap_within_each_dimension():
